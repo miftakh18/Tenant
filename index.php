@@ -9,7 +9,16 @@
 </head>
 
 <body>
-    Tester
+    <nav class="sidebar">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="logo.png" alt="logo">
+                </span>
+            </div>
+        </header>
+
+    </nav>
 </body>
 
 </html>
