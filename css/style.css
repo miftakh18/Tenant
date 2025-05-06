@@ -52,6 +52,29 @@ body{
     background:var(--sidebar-color);
 }
 
+.sidebar li{
+    height:50px;
+    margin-top: 10px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+
+.sidebar li .icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+     font-size: 20px;
+
+}
+.sidebar li .icon,
+.sidebar li .text{
+   color: var(--text-color);
+   transition: var(--tran-03);
+     
+}
 .sidebar header{
     position:relative;
 }
@@ -97,7 +120,91 @@ margin-top: -2px;
 
 
 } 
-/* i.toggle > svg {
-    width: 10px !important;
-    height: 10px !important;
-  } */
+.sidebar  .search-box{
+    background: var(--primary-color-light);
+}
+.search-box input {
+    height: 100% ;
+    width: 100%;
+    outline: none;
+    border:none;
+    border-radius:6px;
+    background: var(--primary-color-light);
+}
+.sidebar li a {
+    height: 100%;
+    width: 100% ;
+    display: flex;
+    align-items: center;
+     text-decoration: none;
+     border-radius: 6px;
+     transition: var(--tran-04);
+}
+
+.sidebar li a:hover{
+    background: var(--primary-color);
+}
+
+
+
+.sidebar li a:hover  .icon,
+.sidebar li a:hover  .text{
+    color: var(--sidebar-color);
+}
+
+.sidebar .menu-bar{
+ 
+    height: calc( 100% - 50px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+.menu-bar .mode{
+    background: var(--primary-color-light);
+}
+
+.menu-bar .mode .moon-sun{
+    height: 50px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.menu-bar .mode i {
+    position: absolute;
+}
+
+.menu-bar .mode i.sun{
+    opacity: 0;
+}
+
+.menu-bar .mode .toggle-switch{
+    display: flex;
+    align-items: center;
+    height: 100% ;
+    min-width: 60px;
+   
+}
+
+.toggle-switch .switch{
+    position: relative;
+    height: 22px;
+    width: 44px;
+    border-radius: 25px;
+    background: var(--toggle-color);
+}
+
+
+.switch::before{
+    content: '';
+    height: 15px;
+    width: 15px;
+    position: absolute;
+    border-radius: 50% ;
+    top: 50% ;
+    left:5px;
+    transform: translateY(-50%);
+    background: var(--sidebar-color);
+    cursor: pointer;
+}

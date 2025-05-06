@@ -27,13 +27,84 @@
             </div>
         </header>
 
+
+        <div class="menu-bar">
+            <div class="menu">
+                <div class="menu-links">
+                    <li class="search-box">
+                       
+                    <i class="fa-solid fa-magnifying-glass icon"></i>
+                            <input type="search" placeholder="Search ....">
+                       
+                    </li>
+                    <ul class="menu-links">
+                        <li class="nav-link">
+                            <a href="#">
+                                <i class="fa-solid fa-house icon"></i>
+                                <span class="text nav-text">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="#">
+                                <i class="fa-solid fa-house icon"></i>
+                                <span class="text nav-text">Dashboard</span>
+                            </a>
+                        </li> 
+                        <li class="nav-link">
+                            <a href="#">
+                                <i class="fa-solid fa-house icon"></i>
+                                <span class="text nav-text">Dashboard</span>
+                            </a>
+                        </li> <li class="nav-link">
+                            <a href="#">
+                                <i class="fa-solid fa-house icon"></i>
+                                <span class="text nav-text">Dashboard</span>
+                            </a>
+                        </li> 
+                        <li class="nav-link">
+                            <a href="#">
+                                <i class="fa-solid fa-house icon"></i>
+                                <span class="text nav-text">Dashboard</span>
+                            </a>
+                        </li> 
+                        <li class="nav-link">
+                            <a href="#">
+                                <i class="fa-solid fa-house icon"></i>
+                                <span class="text nav-text">Dashboard</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bottom-content">
+                    <li class="">
+                        <a href="#">
+                        <i class="fa-solid fa-right-from-bracket icon"></i>
+                        <span class="text nav-text">logout</span>
+                        </a>
+                    </li>
+
+                    <li class="mode">
+                        <div class="moon-sun">
+                            <i class="fa-solid fa-moon icon moon"></i>
+                            <i class="fa-solid fa-sun icon sun"></i>
+                        </div>
+                        <span class="mode-text text">Dark  Mode</span>
+                        <div class="toggle-switch">
+                            <span class="switch"></span>
+                        </div>
+                    </li>
+                </div>
+            </div>
+        </div>
     </nav>
 
     <script src="plugin/fontawesome6/js/fontawesome.min.js"></script>
     <!-- <script src="plugin/fontawesome6/js/all.min.js"></script> -->
 
 
-
+<script>
+    alert('di menit 22:28');
+</script>
 </body>
 
 </html>
