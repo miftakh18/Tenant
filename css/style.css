@@ -81,19 +81,19 @@ margin-top: -2px;
 .sidebar header .toggle{
     position :absolute;
     top:50%;
-    right :-25px;
+    right :-40px;
     transform :translateY(-50%); 
-    width: 25px;
-    height: 25px;
+    width:40px;
+    height:40px;
     background-color: var(--primary-color);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     color: var(--sidebar-color);
-    padding: 100px auto;
+
     
-    /* font-size: 22px; */
+    font-size: 22px;
 
 
 } 

@@ -30,6 +30,8 @@
     </nav>
 
     <script src="plugin/fontawesome6/js/fontawesome.min.js"></script>
+    <!-- <script src="plugin/fontawesome6/js/all.min.js"></script> -->
+
 
 
 </body>
