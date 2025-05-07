@@ -11,6 +11,12 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-dark bg-dark px-3">
+        <button class="btn btn-outline-light me-2" id="toggleSidebar">
+            <i class="bi bi-list"></i>
+        </button>
+        <span class="navbar-brand">Navbar</span>
+    </nav>
     <nav class="sidebar">
         <header>
             <div class="image-text">
@@ -86,7 +92,7 @@
                     </a>
                 </li>
 
-                <li class="mode">
+                <!-- <li class="mode">
                     <div class="moon-sun">
                         <i class="fa-solid fa-moon icon moon"></i>
                         <i class="fa-solid fa-sun icon sun"></i>
@@ -95,7 +101,7 @@
                     <div class="toggle-switch">
                         <span class="switch"></span>
                     </div>
-                </li>
+                </li> -->
             </div>
         </div>
     </nav>
