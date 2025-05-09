@@ -1,0 +1,7 @@
+ganti directori jika beda save
+
+pada folder TA/app/config /config.php
+
+terdapat script 'BASEURL' alamat diganti sesuaikan alamat folder yang anda disimpan
+
+	

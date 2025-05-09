@@ -1,0 +1,37 @@
+.kotak-info {
+  border-left: 6px solid #08acafe1;
+  /* border: 1px solid #08acafe1; */
+}
+/* .kotak-info:nth-child(2) {
+  border-left: 6px solid rgb(44, 153, 255);
+}
+.kotak-info:nth-child(3) {
+  border-left: 6px solid rgb(207, 30, 198);
+}
+.kotak-info:nth-child(4) {
+  border-left: 6px solid rgb(255, 117, 24);
+} */
+.card-header {
+  background-color: #4e5669;
+}
+.body-feature {
+  background-color: #79f4f7b6;
+  border: 1px solid #08acaf49;
+  color: #016e70;
+  /* color: white; */
+}
+@media only screen and (min-width: 768px) {
+  .kotak-info {
+    margin-bottom: 10px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .kotak-info {
+    width: 100%;
+    margin: 10px;
+  }
+}
+
+.text-kecil {
+  font-size: 2px;
+}

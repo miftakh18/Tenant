@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="./assets/compiled/css/app.css">
     <link rel="stylesheet" href="./assets/compiled/css/app-dark.css">
     <link rel="stylesheet" href="assets/extensions/@fortawesome/fontawesome-free/css/all.min.css">
+    <style>
 
+    </style>
 </head>
 
 <body>
@@ -21,37 +23,18 @@
         <div id="sidebar" class="">
             <div class="sidebar-wrapper active ">
                 <div class="sidebar-header position-relative border-bottom  p-0">
-                    <div class="d-flex justify-content-start align-items-center ">
+                    <div class="d-flex justify-content-start align-items-center mb-2 " style="margin-bottom: 13.5px !important;">
                         <div class="  ms-3 mt-3">
                             <div class="user-img d-flex align-items-center">
-                                <div class="avatar avatar-md pb-2">
-                                    <img src="./assets/compiled/jpg/1.jpg" style="width:100% ;height:70px">
+                                <div class=" pb-2">
+                                    <img src="assets/img/logo-mmc.png" style="width:90% ;height:50px">
                                 </div>
                             </div>
                         </div>
-                        <div class=" d-flex gap-2  align-items-center ms-3 ">
-                            <h6 class="mt-2 pe-auto">asdasdas </h6>
-                            <i class="fas fa-caret-down fs-6" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <div class=" mt-3   ">
 
-
-                            <ul class="dropdown-menu dropdown-menu-start " aria-labelledby="dropdownMenuButton"
-                                style="min-width: 11rem;">
-                                <li>
-                                    <h6 class="dropdown-header">Hello, John!</h6>
-                                </li>
-                                <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-person me-2"></i> My
-                                        Profile</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-gear me-2"></i>
-                                        Settings</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-wallet me-2"></i>
-                                        Wallet</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#"><i
-                                            class="icon-mid bi bi-box-arrow-left me-2"></i> Logout</a></li>
-                            </ul>
-
+                            <h5 class="mt-3 pe-auto col-12" style="height: 20px;color:#1158ac">Rumah Sakit </h5>
+                            <h6 class="mt-2 col-12" style="font-size: 10pt;color:#037132;">Metropolitan Medical Center</h6>
                         </div>
 
                         <div class="sidebar-toggler  x">
@@ -60,8 +43,8 @@
 
                     </div>
                 </div>
-                <div class="sidebar-menu">
-                    <ul class="menu">
+                <div class="sidebar-menu ">
+                    <ul class="menu p-0 px-3 ">
 
 
                         <li class="sidebar-item active ">
@@ -69,8 +52,6 @@
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
-
-
                         </li>
 
                     </ul>
@@ -95,7 +76,7 @@
                                 <li class="nav-item dropdown me-1 ">
                                     <a class="nav-link active dropdown-toggle text-white" href="#"
                                         data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class='bi bi-envelope bi-sub fs-4'></i>
+                                        <i class='bi bi-envelope bi-sub fs-4' style="font-size: 14pt !important;"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                                         <li>
@@ -107,7 +88,7 @@
                                 <li class="nav-item dropdown me-3">
                                     <a class="nav-link active dropdown-toggle text-white" href="#"
                                         data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                                        <i class='bi bi-bell bi-sub fs-4'></i>
+                                        <i class='bi bi-bell bi-sub fs-4' style="font-size: 14pt !important;"></i>
                                         <span class="badge badge-notification bg-danger">7</span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end notification-dropdown"
@@ -144,7 +125,33 @@
                                     </ul>
                                 </li>
                             </ul>
+                            <div class="dropdown">
+                                <a href="#" data-bs-toggle="dropdown" aria-expanded="true" class="show">
+                                    <div class="user-menu d-flex">
 
+                                        <div class="user-img d-flex align-items-center">
+                                            <div class="avatar avatar-md">
+                                                <img src="./assets/compiled/jpg/1.jpg">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end show" aria-labelledby="dropdownMenuButton" style="" data-bs-popper="static">
+                                    <li>
+                                        <h6 class="dropdown-header">Hello, John!</h6>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-person me-2"></i> My
+                                            Profile</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-gear me-2"></i>
+                                            Settings</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-wallet me-2"></i>
+                                            Wallet</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-box-arrow-left me-2"></i> Logout</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </nav>
@@ -153,8 +160,8 @@
 
                     <div class="container-fluid p-0">
 
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
+                        <button class="navbar-toggler ms-3 border border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon "></span>
                         </button>
                         <div class="collapse navbar-collapse mt-2" id="navbarNavDropdown">
                             <ul class="navbar-nav">
