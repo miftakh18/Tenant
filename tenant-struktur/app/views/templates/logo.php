@@ -1,1 +1,1 @@
-<link rel="icon" type="image/x-icon" href="<?= BASEURL ?>/img/Logo.gif">
+<link rel="icon" type="image/x-icon" href="<?= BASEURL ?>/img/logo.ico">
