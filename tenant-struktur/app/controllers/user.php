@@ -77,18 +77,18 @@ class user extends Controller
         // var_dump($sql);
         // exit;
         if ($sql == true) {
-            if ($sql['status'] != 0) {
-                $output = ['tipe' => 'error', 'pesan' => 'Akun Anda Di NonAktifkan'];
+            if ($sql['is_active'] == 0) {
+                $output = ['tipe' => 'error', 'pesan' => 'Akun Anda Di NonAktifkan', 'is_active' => $sql['is_active']];
             } else {
                 if (empty($username)) {
                     $output = ['tipe' => 'error', 'pesan' => 'Username anda masih kosong'];
                 } elseif (password_verify($password, $sql["password"])) {
                     // set session
-                    $_SESSION["login"] = $sql["username"];
-                    $_SESSION["nama"] = $sql["nama"];
-                    $_SESSION["level"] = $sql["level"];
-                    $_SESSION['id']  = $sql['id'];
-                    $_SESSION['jabatan'] = $sql['jabatan'];
+                    // $_SESSION["login"] = $sql["username"];
+                    // $_SESSION["nama"] = $sql["nama"];
+                    // $_SESSION["level"] = $sql["level"];
+                    // $_SESSION['id']  = $sql['id'];
+                    // $_SESSION['jabatan'] = $sql['jabatan'];
 
                     $output = ['tipe' => 'success', 'pesan' => 'Selamat Anda telah Login'];
                 } elseif (empty($password)) {

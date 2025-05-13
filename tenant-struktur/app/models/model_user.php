@@ -1,7 +1,7 @@
 <?php
 class model_user
 {
-    private $table = 'user',
+    private $table = 'user_tenant',
         $db;
 
 
@@ -9,6 +9,20 @@ class model_user
     {
         $this->db = new Database;
     }
+
+    public function cek_login($username)
+    {
+        $query = 'SELECT * FROM ' . $this->table . ' WHERE username =?';
+        $this->db->query($query);
+        $this->db->bind(1, $username);
+        try {
+            return  $this->db->single();
+        } catch (PDOException $th) {
+            die($th->getMessage());
+        }
+    }
+
+
 
     public function show_user()
     {
@@ -69,17 +83,6 @@ class model_user
         }
     }
 
-    public function cek_login($username)
-    {
-        $query = 'SELECT * FROM ' . $this->table . ' WHERE username =?';
-        $this->db->query($query);
-        $this->db->bind(1, $username);
-        try {
-            return  $this->db->single();
-        } catch (PDOException $th) {
-            die($th->getMessage());
-        }
-    }
 
     public function updateAksesById($id, $akses, $user)
     {

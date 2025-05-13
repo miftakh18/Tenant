@@ -14,13 +14,7 @@
     <link href="<?= BASEURL; ?>/css/sidebar/sidebars.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= BASEURL; ?>/font/css/all.min.css">
     <link rel="stylesheet" href="<?= BASEURL; ?>/font/css/solid.min.css">
-
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/table/datatables.min.css">
-
-
-
-
-
 </head>
 
 
