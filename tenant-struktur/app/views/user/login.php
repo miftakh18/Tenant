@@ -42,7 +42,7 @@ if (isset($_SESSION['login'])) {
                             <img src="<?= BASEURL ?>/img/logo-mmc.png" style="width:80px;">
                         </div>
                         <div class=" fs-5 pt-3 fw-bolder ">
-                            <span class="border-bottom   " style="color:rgba(48, 93, 145, 0.96) !important;border-bottom:2px solid rgb(34, 174, 95) !important ;letter-spacing: 10px !important;">TENANT MMC</span>
+                            <span class="border-bottom" style="color:rgba(48, 93, 145, 0.96) !important;border-bottom:2px solid rgb(34, 174, 95) !important ;letter-spacing: 10px !important;">TENANT MMC</span>
                         </div>
                     </div>
                     <div class="card-body ">
@@ -83,6 +83,7 @@ if (isset($_SESSION['login'])) {
             </div>
         </div>
     </div>
+
 </body>
 
 </html>

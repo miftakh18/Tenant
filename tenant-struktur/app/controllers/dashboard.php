@@ -19,8 +19,9 @@ class dashboard extends Controller
         // if (!isset($_SESSION["login"])) {
         //     echo "anda Belum Login";
         // } else {
+        echo $_SESSION['login'];
         $this->view('templates/header', $data);
-        $this->view('dashboard/index', $data);
+        // $this->view('dashboard/index', $data);
         $this->view('templates/footer');
         // }
     }

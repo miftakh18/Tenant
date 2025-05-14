@@ -84,7 +84,7 @@ class user extends Controller
                     $output = ['tipe' => 'error', 'pesan' => 'Username anda masih kosong'];
                 } elseif (password_verify($password, $sql["password"])) {
                     // set session
-                    // $_SESSION["login"] = $sql["username"];
+                    $_SESSION["login"] = $sql["uuid"];
                     // $_SESSION["nama"] = $sql["nama"];
                     // $_SESSION["level"] = $sql["level"];
                     // $_SESSION['id']  = $sql['id'];
@@ -109,6 +109,6 @@ class user extends Controller
         $_SESSION = [];
         session_unset();
         session_destroy();
-        header('Location:' . BASEURL . '/user/index');
+        header('Location:' . BASEURL . '/');
     }
 }
