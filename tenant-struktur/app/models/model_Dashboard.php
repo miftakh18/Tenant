@@ -2,40 +2,21 @@
 class model_Dashboard
 {
     private $db;
-    private $query = 'SELECT * FROM ';
+
 
     public function __construct()
     {
         $this->db = new Database;
     }
-    public function getJumlah_dataBarang()
+
+
+
+
+    public function getAllMenu()
     {
-
-        $this->db->query($this->query . 'data_barang');
+        $query = "SELECT uuid,icon,menu,link,is_active FROM menu WHERE  is_active=1 ORDER BY id DESC ";
+        $this->db->query($query);
         $this->db->execute();
-        return $this->db->jumlahKolom();
-    }
-    public function getJumlah_tMasuk()
-    {
-
-        $this->db->query($this->query . 't_masuk');
-        $this->db->execute();
-        return $this->db->jumlahKolom();
-    }
-
-    public function getJumlah_tKeluar()
-    {
-
-        $this->db->query($this->query . 't_keluar');
-        $this->db->execute();
-        return $this->db->jumlahKolom();
-    }
-
-    public function getJumlahUser()
-    {
-
-        $this->db->query($this->query . 'user');
-        $this->db->execute();
-        return $this->db->jumlahKolom();
+        return $this->db->resaultSet();
     }
 }

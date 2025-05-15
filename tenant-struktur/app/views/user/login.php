@@ -120,7 +120,7 @@ if (isset($_SESSION['login'])) {
             dataType: 'json',
             success: function(res) {
                 if (res.tipe == "success") {
-                    window.location.href = "<?= BASEURL ?>/dashboard";
+                    window.location.href = "<?= BASEURL ?>/";
                 } else {
 
                     Swal.fire({

@@ -1,5 +1,5 @@
 <?php
-class menu extends Controller
+class config
 {
     public function index() {}
 }

@@ -24,13 +24,16 @@
          <div class="sidebar-menu ">
              <ul class="menu p-0 px-3 ">
 
+                 <?php foreach ($data['menu'] as $no => $menu): ?>
+                     <li class="sidebar-item">
+                         <a href="<?= BASEURL . $menu['link'] ?>" class='sidebar-link'>
+                             <i class="<?= $menu['icon']; ?>"></i>
+                             <span> <?= $menu['menu']; ?></span>
+                         </a>
+                     </li>
+                 <?php endforeach ?>
 
-                 <li class="sidebar-item active ">
-                     <a href="index.html" class='sidebar-link'>
-                         <i class="bi bi-grid-fill"></i>
-                         <span>Dashboard</span>
-                     </a>
-                 </li>
+
 
              </ul>
          </div>

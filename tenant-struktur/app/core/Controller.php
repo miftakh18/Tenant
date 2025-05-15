@@ -4,9 +4,7 @@ class Controller
 {
     public $header;
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
     // public function header()
     // {
     // }
@@ -38,7 +36,9 @@ class Controller
 
     public function pdf()
     {
-
         require_once '../public/assets/vendor/autoload.php';
     }
+
+
+    public function cek_akses() {}
 }
