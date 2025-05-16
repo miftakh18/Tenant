@@ -136,7 +136,7 @@
                                         </div>
                                     </div>
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end show" aria-labelledby="dropdownMenuButton" style="" data-bs-popper="static">
+                                <ul class="dropdown-menu dropdown-menu-end show" aria-labelledby="dropdownMenuButton" data-bs-popper="static">
                                     <li>
                                         <h6 class="dropdown-header">Hello, John!</h6>
                                     </li>
