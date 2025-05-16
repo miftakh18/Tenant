@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 13, 2025 at 09:09 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- Host: localhost
+-- Generation Time: May 16, 2025 at 09:28 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 5.6.40
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -31,20 +32,12 @@ CREATE TABLE `akses_aksi` (
   `id` int(11) NOT NULL,
   `uuid` varchar(191) NOT NULL,
   `aksi` varchar(225) DEFAULT NULL,
-  `is_active` int(11) NOT NULL DEFAULT 1,
+  `is_active` int(11) NOT NULL DEFAULT '1',
   `create_by` varchar(225) DEFAULT NULL,
-  `create_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modify_by` varchar(225) DEFAULT NULL,
   `modify_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `akses_aksi`
---
-
-INSERT INTO `akses_aksi` (`id`, `uuid`, `aksi`, `is_active`, `create_by`, `create_at`, `modify_by`, `modify_at`) VALUES
-(2, '44345895-229c-11f0-89a0-080027307d45', 'ADD', 1, 'M. Miftakhudin', '2025-04-26 19:45:00', 'martajab anggiht kurniawan', '2025-05-03 16:44:37'),
-(3, '1c004ee1-2806-11f0-89a0-080027307d45', 'EDIT', 1, 'martajab anggiht kurniawan', '2025-05-03 17:05:15', NULL, NULL);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -58,13 +51,13 @@ CREATE TABLE `log_perubahan_user_tenant` (
   `username` varchar(225) NOT NULL,
   `password` varchar(225) NOT NULL,
   `nama` varchar(225) DEFAULT NULL,
-  `is_admin` tinyint(1) NOT NULL DEFAULT 0,
-  `is_active` tinyint(1) DEFAULT 1,
+  `is_admin` tinyint(1) NOT NULL DEFAULT '0',
+  `is_active` tinyint(1) DEFAULT '1',
   `group_tenant` varchar(225) DEFAULT NULL,
   `aksi` varchar(100) DEFAULT NULL,
   `author` varchar(225) DEFAULT NULL,
-  `create_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -78,22 +71,22 @@ CREATE TABLE `menu` (
   `icon` varchar(225) DEFAULT NULL,
   `menu` varchar(225) DEFAULT NULL,
   `link` varchar(225) DEFAULT NULL,
-  `is_active` int(11) NOT NULL DEFAULT 1,
+  `is_active` int(11) NOT NULL DEFAULT '1',
   `create_by` varchar(225) DEFAULT NULL,
-  `create_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modify_by` varchar(225) DEFAULT NULL,
   `modify_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `menu`
 --
 
 INSERT INTO `menu` (`id`, `uuid`, `icon`, `menu`, `link`, `is_active`, `create_by`, `create_at`, `modify_by`, `modify_at`) VALUES
-(1, '54aa7d76-2017-11f0-89a0-080027307d45', 'ICON', 'MENU TEST', '/testess', 1, 'M. Miftakhudin', '2025-04-23 14:48:22', 'M. Miftakhudin', '2025-05-01 19:41:56'),
-(2, 'a3740990-2017-11f0-89a0-080027307d45', 'ICON 2', 'TESTER', '/sdae', 1, 'M. Miftakhudin', '2025-04-23 14:50:34', 'M. Miftakhudin', '2025-04-23 20:18:54'),
-(3, '670cf623-202d-11f0-89a0-080027307d45', 'asdaad', 'Testing Admin', '123123123', 1, 'M. Miftakhudin', '2025-04-23 17:26:22', 'M. Miftakhudin', '2025-05-01 19:41:50'),
-(4, 'acf4bac1-202d-11f0-89a0-080027307d45', 'TESTING ICON', 'TESTING MENU', 'MENUSa', 1, 'M. Miftakhudin', '2025-04-23 17:28:19', 'M. Miftakhudin', '2025-04-23 20:21:04');
+(1, '4ea3cf39-3226-11f0-89a0-080027307d45', 'fas fa-chart-line', 'Dashboard', '/dashboard', 1, 'M. Miftakhudin', '2025-05-16 14:20:55', NULL, NULL),
+(2, '6bbe44f1-3226-11f0-89a0-080027307d45', 'fas fa-exchange-alt', 'Order', '/order', 1, 'M. Miftakhudin', '2025-05-16 14:21:44', NULL, NULL),
+(3, '77d1c31d-3226-11f0-89a0-080027307d45', 'fas fa-history', 'History', '/history', 1, 'M. Miftakhudin', '2025-05-16 14:22:04', NULL, NULL),
+(4, '8ec7cd30-3226-11f0-89a0-080027307d45', 'fas fa-cogs', 'Config', '/config', 1, 'M. Miftakhudin', '2025-05-16 14:22:43', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -105,16 +98,9 @@ CREATE TABLE `role_aksi` (
   `id` int(11) NOT NULL,
   `uuid_tenant` varchar(225) DEFAULT NULL,
   `uuid_aksi` varchar(225) DEFAULT NULL,
-  `create_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `create_by` varchar(225) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `role_aksi`
---
-
-INSERT INTO `role_aksi` (`id`, `uuid_tenant`, `uuid_aksi`, `create_at`, `create_by`) VALUES
-(8, '4a32f128-27fa-11f0-89a0-080027307d45', '44345895-229c-11f0-89a0-080027307d45', '2025-05-03 19:16:59', 'martajab anggiht kurniawan');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -129,26 +115,19 @@ CREATE TABLE `role_tenant` (
   `uuid_submenu` varchar(225) DEFAULT NULL,
   `uuid_subsubmenu` varchar(225) DEFAULT NULL,
   `create_by` varchar(225) DEFAULT NULL,
-  `create_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `role_tenant`
 --
 
 INSERT INTO `role_tenant` (`id`, `uuid_tenant`, `uuid_menu`, `uuid_submenu`, `uuid_subsubmenu`, `create_by`, `create_at`) VALUES
-(13, '4a32f128-27fa-11f0-89a0-080027307d45', '54aa7d76-2017-11f0-89a0-080027307d45', '8a94572d-2045-11f0-89a0-080027307d45', NULL, 'M. Miftakhudin', '2025-05-05 14:35:03'),
-(14, '4a32f128-27fa-11f0-89a0-080027307d45', '670cf623-202d-11f0-89a0-080027307d45', NULL, NULL, 'M. Miftakhudin', '2025-05-05 14:35:03'),
-(15, '4a32f128-27fa-11f0-89a0-080027307d45', 'a3740990-2017-11f0-89a0-080027307d45', '1c39515e-2040-11f0-89a0-080027307d45', NULL, 'M. Miftakhudin', '2025-05-05 14:35:03'),
-(16, '4a32f128-27fa-11f0-89a0-080027307d45', 'a3740990-2017-11f0-89a0-080027307d45', '404b3a55-24b1-11f0-89a0-080027307d45', '7d9bd33a-2558-11f0-89a0-080027307d45', 'M. Miftakhudin', '2025-05-05 14:35:03'),
-(17, '4a32f128-27fa-11f0-89a0-080027307d45', 'a3740990-2017-11f0-89a0-080027307d45', 'd3b62b06-20e2-11f0-89a0-080027307d45', '01478b4a-21bc-11f0-89a0-080027307d45', 'M. Miftakhudin', '2025-05-05 14:35:03'),
-(18, '4a32f128-27fa-11f0-89a0-080027307d45', 'a3740990-2017-11f0-89a0-080027307d45', 'd3b62b06-20e2-11f0-89a0-080027307d45', '948044ed-24b5-11f0-89a0-080027307d45', 'M. Miftakhudin', '2025-05-05 14:35:03'),
-(19, '4a32f128-27fa-11f0-89a0-080027307d45', 'acf4bac1-202d-11f0-89a0-080027307d45', '8ce031ef-2041-11f0-89a0-080027307d45', '57896707-2102-11f0-89a0-080027307d45', 'M. Miftakhudin', '2025-05-05 14:35:03'),
-(20, 'b618e171-2685-11f0-89a0-080027307d45', '54aa7d76-2017-11f0-89a0-080027307d45', '8a94572d-2045-11f0-89a0-080027307d45', NULL, 'M. Miftakhudin', '2025-05-05 15:48:29'),
-(22, 'b618e171-2685-11f0-89a0-080027307d45', 'a3740990-2017-11f0-89a0-080027307d45', '1c39515e-2040-11f0-89a0-080027307d45', NULL, 'M. Miftakhudin', '2025-05-05 16:15:59'),
-(23, 'b618e171-2685-11f0-89a0-080027307d45', 'a3740990-2017-11f0-89a0-080027307d45', '404b3a55-24b1-11f0-89a0-080027307d45', NULL, 'M. Miftakhudin', '2025-05-05 16:15:59'),
-(24, 'b618e171-2685-11f0-89a0-080027307d45', 'a3740990-2017-11f0-89a0-080027307d45', 'd3b62b06-20e2-11f0-89a0-080027307d45', '01478b4a-21bc-11f0-89a0-080027307d45', 'M. Miftakhudin', '2025-05-05 16:15:59'),
-(25, 'b618e171-2685-11f0-89a0-080027307d45', 'a3740990-2017-11f0-89a0-080027307d45', 'd3b62b06-20e2-11f0-89a0-080027307d45', '948044ed-24b5-11f0-89a0-080027307d45', 'M. Miftakhudin', '2025-05-05 16:15:59');
+(1, '4f9803f6-2685-11f0-89a0-080027307d45', '4ea3cf39-3226-11f0-89a0-080027307d45', 'a3295cae-3226-11f0-89a0-080027307d45', NULL, 'M. Miftakhudin', '2025-05-16 14:27:33'),
+(2, '4f9803f6-2685-11f0-89a0-080027307d45', '6bbe44f1-3226-11f0-89a0-080027307d45', NULL, NULL, 'M. Miftakhudin', '2025-05-16 14:27:33'),
+(3, '4f9803f6-2685-11f0-89a0-080027307d45', '77d1c31d-3226-11f0-89a0-080027307d45', 'cbeb959d-3226-11f0-89a0-080027307d45', '085ccb00-3227-11f0-89a0-080027307d45', 'M. Miftakhudin', '2025-05-16 14:27:33'),
+(4, '4f9803f6-2685-11f0-89a0-080027307d45', '8ec7cd30-3226-11f0-89a0-080027307d45', 'b60cc486-3226-11f0-89a0-080027307d45', NULL, 'M. Miftakhudin', '2025-05-16 14:27:33'),
+(5, '4f9803f6-2685-11f0-89a0-080027307d45', '8ec7cd30-3226-11f0-89a0-080027307d45', 'e36af9ab-3226-11f0-89a0-080027307d45', NULL, 'M. Miftakhudin', '2025-05-16 14:27:33');
 
 -- --------------------------------------------------------
 
@@ -160,30 +139,19 @@ CREATE TABLE `role_user` (
   `id` int(11) NOT NULL,
   `id_tenant` varchar(225) NOT NULL,
   `id_user` varchar(225) NOT NULL,
-  `status` int(11) DEFAULT 0 COMMENT '0=false ; 1= true',
+  `status` int(11) DEFAULT '0' COMMENT '0=false ; 1= true',
   `create_by` varchar(225) DEFAULT NULL,
-  `create_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modify_by` varchar(225) DEFAULT NULL,
   `modify_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `role_user`
 --
 
 INSERT INTO `role_user` (`id`, `id_tenant`, `id_user`, `status`, `create_by`, `create_at`, `modify_by`, `modify_at`) VALUES
-(83, '6bd4fece-1ccf-11f0-89a0-080027307d45', 'ace9cfa0-1cd9-11f0-89a0-080027307d45', 1, 'M. Miftakhudin', '2025-04-21 21:36:15', NULL, NULL),
-(84, '57108368-1ccf-11f0-89a0-080027307d45', 'ace9cfa0-1cd9-11f0-89a0-080027307d45', 1, 'M. Miftakhudin', '2025-04-21 21:36:15', NULL, NULL),
-(85, 'b66ef146-1a60-11f0-89a0-080027307d45', 'ace9cfa0-1cd9-11f0-89a0-080027307d45', 1, 'M. Miftakhudin', '2025-04-21 21:36:15', NULL, NULL),
-(86, '91c6bd08-19c9-11f0-89a0-080027307d45', 'ace9cfa0-1cd9-11f0-89a0-080027307d45', 1, 'M. Miftakhudin', '2025-04-21 21:36:15', NULL, NULL),
-(87, '76570a71-19c9-11f0-89a0-080027307d45', 'ace9cfa0-1cd9-11f0-89a0-080027307d45', 1, 'M. Miftakhudin', '2025-04-21 21:36:15', NULL, NULL),
-(88, '54fa660e-19c9-11f0-89a0-080027307d45', 'ace9cfa0-1cd9-11f0-89a0-080027307d45', 1, 'M. Miftakhudin', '2025-04-21 21:36:15', NULL, NULL),
-(89, 'b7d0f85d-19c8-11f0-89a0-080027307d45', 'ace9cfa0-1cd9-11f0-89a0-080027307d45', 1, 'M. Miftakhudin', '2025-04-21 21:36:15', NULL, NULL),
-(90, '6bd4fece-1ccf-11f0-89a0-080027307d45', '55f11b5f-1cd8-11f0-89a0-080027307d45', 1, 'M. Miftakhudin', '2025-04-21 21:38:10', NULL, NULL),
-(91, '76570a71-19c9-11f0-89a0-080027307d45', '55f11b5f-1cd8-11f0-89a0-080027307d45', 1, 'M. Miftakhudin', '2025-04-21 21:38:10', NULL, NULL),
-(92, 'b7d0f85d-19c8-11f0-89a0-080027307d45', '55f11b5f-1cd8-11f0-89a0-080027307d45', 1, 'M. Miftakhudin', '2025-04-21 21:38:10', NULL, NULL),
-(93, '6bd4fece-1ccf-11f0-89a0-080027307d45', 'dcc207d0-1b58-11f0-89a0-080027307d45', 1, 'M. Miftakhudin', '2025-04-21 22:40:47', NULL, NULL),
-(94, 'b66ef146-1a60-11f0-89a0-080027307d45', 'dcc207d0-1b58-11f0-89a0-080027307d45', 1, 'M. Miftakhudin', '2025-04-21 22:40:47', NULL, NULL);
+(3, '4f9803f6-2685-11f0-89a0-080027307d45', 'dcc207d0-1b58-11f0-89a0-080027307d45', 1, 'M. Miftakhudin', '2025-05-16 14:27:10', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -198,23 +166,22 @@ CREATE TABLE `submenu` (
   `submenu` varchar(225) DEFAULT NULL,
   `link` varchar(225) DEFAULT NULL,
   `icon` varchar(225) DEFAULT NULL,
-  `is_active` int(11) NOT NULL DEFAULT 1,
+  `is_active` int(11) NOT NULL DEFAULT '1',
   `create_by` varchar(225) DEFAULT NULL,
-  `create_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modify_by` varchar(225) DEFAULT NULL,
   `modify_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `submenu`
 --
 
 INSERT INTO `submenu` (`id`, `uuid`, `uuid_menu`, `submenu`, `link`, `icon`, `is_active`, `create_by`, `create_at`, `modify_by`, `modify_at`) VALUES
-(1, '1c39515e-2040-11f0-89a0-080027307d45', 'a3740990-2017-11f0-89a0-080027307d45', 'Submenu', 'tester', 'submenu', 1, 'M. Miftakhudin', '2025-04-23 19:40:17', 'M. Miftakhudin', '2025-04-25 17:00:01'),
-(2, '8ce031ef-2041-11f0-89a0-080027307d45', 'acf4bac1-202d-11f0-89a0-080027307d45', 'tesMenu', 'asdasd', 'TOKAI', 1, 'M. Miftakhudin', '2025-04-23 19:50:35', 'M. Miftakhudin', '2025-04-23 20:22:24'),
-(3, '8a94572d-2045-11f0-89a0-080027307d45', '54aa7d76-2017-11f0-89a0-080027307d45', 'submenu', 'asdasd', 'sss', 1, 'M. Miftakhudin', '2025-04-23 20:19:09', 'M. Miftakhudin', '2025-04-23 20:22:35'),
-(4, 'd3b62b06-20e2-11f0-89a0-080027307d45', 'a3740990-2017-11f0-89a0-080027307d45', 'yrdd', 'sdfff', NULL, 1, 'M. Miftakhudin', '2025-04-24 15:05:03', 'M. Miftakhudin', '2025-04-29 11:19:52'),
-(5, '404b3a55-24b1-11f0-89a0-080027307d45', 'a3740990-2017-11f0-89a0-080027307d45', 'Testing3', 'sss', NULL, 1, 'M. Miftakhudin', '2025-04-29 11:20:15', NULL, NULL);
+(1, 'a3295cae-3226-11f0-89a0-080027307d45', '4ea3cf39-3226-11f0-89a0-080027307d45', 'Dashboard', '/dashboard', NULL, 1, 'M. Miftakhudin', '2025-05-16 14:23:17', 'M. Miftakhudin', '2025-05-16 14:23:30'),
+(2, 'b60cc486-3226-11f0-89a0-080027307d45', '8ec7cd30-3226-11f0-89a0-080027307d45', 'Config', '/subconfig', NULL, 1, 'M. Miftakhudin', '2025-05-16 14:23:49', NULL, NULL),
+(3, 'cbeb959d-3226-11f0-89a0-080027307d45', '77d1c31d-3226-11f0-89a0-080027307d45', 'History', '/subhistory', NULL, 1, 'M. Miftakhudin', '2025-05-16 14:24:25', NULL, NULL),
+(4, 'e36af9ab-3226-11f0-89a0-080027307d45', '8ec7cd30-3226-11f0-89a0-080027307d45', 'subsubconfig', '#', NULL, 1, 'M. Miftakhudin', '2025-05-16 14:25:05', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -230,22 +197,19 @@ CREATE TABLE `subsubmenu` (
   `subsubmenu` varchar(225) DEFAULT NULL,
   `icon` varchar(225) DEFAULT NULL,
   `link` varchar(225) DEFAULT NULL,
-  `is_active` int(11) NOT NULL DEFAULT 1,
+  `is_active` int(11) NOT NULL DEFAULT '1',
   `create_by` varchar(225) DEFAULT NULL,
-  `create_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modify_by` varchar(225) DEFAULT NULL,
   `modify_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `subsubmenu`
 --
 
 INSERT INTO `subsubmenu` (`id`, `uuid`, `uuid_menu`, `uuid_submenu`, `subsubmenu`, `icon`, `link`, `is_active`, `create_by`, `create_at`, `modify_by`, `modify_at`) VALUES
-(1, '57896707-2102-11f0-89a0-080027307d45', 'acf4bac1-202d-11f0-89a0-080027307d45', '8ce031ef-2041-11f0-89a0-080027307d45', 'Tes Subsubmenu', NULL, '/324234fffff', 1, 'M. Miftakhudin', '2025-04-24 18:50:39', 'M. Miftakhudin', '2025-04-25 16:53:44'),
-(2, '01478b4a-21bc-11f0-89a0-080027307d45', 'a3740990-2017-11f0-89a0-080027307d45', 'd3b62b06-20e2-11f0-89a0-080027307d45', 'Tester', NULL, 'tester', 1, 'M. Miftakhudin', '2025-04-25 16:59:40', NULL, NULL),
-(5, '948044ed-24b5-11f0-89a0-080027307d45', 'a3740990-2017-11f0-89a0-080027307d45', 'd3b62b06-20e2-11f0-89a0-080027307d45', 'tesste', NULL, 'ff', 1, 'M. Miftakhudin', '2025-04-29 11:51:14', NULL, NULL),
-(6, '7d9bd33a-2558-11f0-89a0-080027307d45', 'a3740990-2017-11f0-89a0-080027307d45', '404b3a55-24b1-11f0-89a0-080027307d45', 'TRASD', NULL, 'sadasd', 0, 'M. Miftakhudin', '2025-04-30 07:17:24', 'M. Miftakhudin', '2025-05-05 16:13:59');
+(1, '085ccb00-3227-11f0-89a0-080027307d45', '77d1c31d-3226-11f0-89a0-080027307d45', 'cbeb959d-3226-11f0-89a0-080027307d45', 'Sub History', NULL, '/subsubhistory', 1, 'M. Miftakhudin', '2025-05-16 14:26:07', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -255,17 +219,17 @@ INSERT INTO `subsubmenu` (`id`, `uuid`, `uuid_menu`, `uuid_submenu`, `subsubmenu
 
 CREATE TABLE `tenant` (
   `urutan` int(11) NOT NULL,
-  `uuid` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `uuid` varchar(191) CHARACTER SET utf8mb4 NOT NULL,
   `nama_tenant` varchar(225) DEFAULT NULL,
   `nomor` varchar(225) DEFAULT NULL,
-  `alamat` text DEFAULT NULL,
-  `is_active` int(11) DEFAULT 1 COMMENT '1= active;0= nonactive',
-  `permission` text DEFAULT NULL,
+  `alamat` text,
+  `is_active` int(11) DEFAULT '1' COMMENT '1= active;0= nonactive',
+  `permission` text,
   `create_by` varchar(225) DEFAULT NULL,
-  `create_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modify_by` varchar(225) DEFAULT NULL,
   `modify_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tenant`
@@ -298,17 +262,17 @@ INSERT INTO `tenant` (`urutan`, `uuid`, `nama_tenant`, `nomor`, `alamat`, `is_ac
 --
 
 CREATE TABLE `user_tenant` (
-  `uuid` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `uuid` varchar(191) CHARACTER SET utf8mb4 NOT NULL,
   `username` varchar(225) NOT NULL,
   `password` varchar(225) NOT NULL,
   `nama` varchar(225) DEFAULT NULL,
-  `is_admin` tinyint(1) NOT NULL DEFAULT 0,
-  `is_active` tinyint(1) DEFAULT 1,
+  `is_admin` tinyint(1) NOT NULL DEFAULT '0',
+  `is_active` tinyint(1) DEFAULT '1',
   `create_by` varchar(225) DEFAULT NULL,
-  `create_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modify_by` varchar(225) DEFAULT NULL,
   `modify_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user_tenant`
@@ -353,7 +317,7 @@ CREATE TABLE `view_menu` (
 --
 DROP TABLE IF EXISTS `view_akses_aksi`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_akses_aksi`  AS SELECT `ra`.`uuid_tenant` AS `uuid_tenant`, `aa`.`aksi` AS `aksi` FROM (`role_aksi` `ra` left join `akses_aksi` `aa` on(`ra`.`uuid_aksi` = `aa`.`uuid`)) WHERE `aa`.`is_active` = 1 ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_akses_aksi`  AS  select `ra`.`uuid_tenant` AS `uuid_tenant`,`aa`.`aksi` AS `aksi` from (`role_aksi` `ra` left join `akses_aksi` `aa` on((`ra`.`uuid_aksi` = `aa`.`uuid`))) where (`aa`.`is_active` = 1) ;
 
 -- --------------------------------------------------------
 
@@ -362,7 +326,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `view_menu`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_menu`  AS SELECT `rt`.`uuid_tenant` AS `uuid_tenant`, `m`.`menu` AS `menu`, `m`.`is_active` AS `active_menu`, `sm`.`submenu` AS `submenu`, `sm`.`is_active` AS `active_submenu`, `ssm`.`subsubmenu` AS `subsubmenu`, `ssm`.`is_active` AS `active_subsubmenu` FROM (((`role_tenant` `rt` left join `menu` `m` on(`rt`.`uuid_menu` = `m`.`uuid`)) left join `submenu` `sm` on(`rt`.`uuid_submenu` = `sm`.`uuid`)) left join `subsubmenu` `ssm` on(`rt`.`uuid_subsubmenu` = `ssm`.`uuid`)) WHERE (`m`.`is_active` = 1 OR `m`.`is_active` is null) AND (`sm`.`is_active` = 1 OR `sm`.`is_active` is null) AND (`ssm`.`is_active` = 1 OR `ssm`.`is_active` is null) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_menu`  AS  select `rt`.`uuid_tenant` AS `uuid_tenant`,`m`.`menu` AS `menu`,`m`.`is_active` AS `active_menu`,`sm`.`submenu` AS `submenu`,`sm`.`is_active` AS `active_submenu`,`ssm`.`subsubmenu` AS `subsubmenu`,`ssm`.`is_active` AS `active_subsubmenu` from (((`role_tenant` `rt` left join `menu` `m` on((`rt`.`uuid_menu` = `m`.`uuid`))) left join `submenu` `sm` on((`rt`.`uuid_submenu` = `sm`.`uuid`))) left join `subsubmenu` `ssm` on((`rt`.`uuid_subsubmenu` = `ssm`.`uuid`))) where (((`m`.`is_active` = 1) or isnull(`m`.`is_active`)) and ((`sm`.`is_active` = 1) or isnull(`sm`.`is_active`)) and ((`ssm`.`is_active` = 1) or isnull(`ssm`.`is_active`))) ;
 
 --
 -- Indexes for dumped tables
@@ -444,7 +408,7 @@ ALTER TABLE `user_tenant`
 -- AUTO_INCREMENT for table `akses_aksi`
 --
 ALTER TABLE `akses_aksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `log_perubahan_user_tenant`
@@ -462,31 +426,31 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT for table `role_aksi`
 --
 ALTER TABLE `role_aksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `role_tenant`
 --
 ALTER TABLE `role_tenant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `role_user`
 --
 ALTER TABLE `role_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `submenu`
 --
 ALTER TABLE `submenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `subsubmenu`
 --
 ALTER TABLE `subsubmenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tenant`

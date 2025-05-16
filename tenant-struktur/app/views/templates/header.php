@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TENANT</title>
-
-
     <link rel="shortcut icon" href="<?= BASEURL; ?>/assets/compiled/svg/favicon.svg" type="image/x-icon">
     <link rel="shortcut icon" href="" type="image/png">
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/compiled/css/app.css">
@@ -19,6 +17,7 @@
 
 <body>
     <script src="<?= BASEURL; ?>/assets/static/js/initTheme.js"></script>
+    <script src="<?= BASEURL; ?>/js/jquery/jquery-3.6.0.min.js"></script>
     <div id="app">
         <?php require_once 'sidebar.php' ?>
         <div id="main" class='layout-navbar navbar-fixed '>
@@ -127,8 +126,20 @@
 
                 </div>
                 <section class="section">
-
-
                     <script>
-                        alert('mencoba submenu dengan toggle');
+                        $(function() {
+                            let sidebar_item = $(".sidebar-item.active");
+                            let id_sidebar = sidebar_item.data('id');
+                            $.ajax({
+                                url: `<?= BASEURL ?>/menu/cekmenu/${id_sidebar}/submenu`,
+                                dataType: 'json',
+                                success: function(res) {
+                                    let html = '';
+                                    $.each(res, function(i, val) {
+                                        html += ` <li class="nav-item "><a class="nav-link " aria-current="page" href="${val.link}">${val.submenu}</a></li>`;
+                                    })
+                                    $("#navbarNavDropdown > .navbar-nav").html(html);
+                                }
+                            })
+                        })
                     </script>

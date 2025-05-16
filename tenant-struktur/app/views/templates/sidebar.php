@@ -24,11 +24,15 @@
          <div class="sidebar-menu ">
              <ul class="menu p-0 px-3 ">
 
-                 <?php foreach ($data['menu'] as $no => $menu): ?>
-                     <li class="sidebar-item">
+                 <?php foreach ($data['menu'] as $no => $menu):
+                        $link_menu  = explode('/', $menu['link']);
+                        $link_menu  = $link_menu[1];
+                    ?>
+                     <li class="sidebar-item <?= $_GET['url'] == $link_menu ? 'active' : '' ?>" data-id="<?= $menu['uuid']; ?>">
                          <a href="<?= BASEURL . $menu['link'] ?>" class='sidebar-link'>
                              <i class="<?= $menu['icon']; ?>"></i>
-                             <span> <?= $menu['menu']; ?></span>
+                             <span> <?= $menu['menu']; ?>
+                             </span>
                          </a>
                      </li>
                  <?php endforeach ?>

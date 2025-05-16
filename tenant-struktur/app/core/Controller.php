@@ -40,5 +40,8 @@ class Controller
     }
 
 
-    public function cek_akses() {}
+    public function     return_json($param)
+    {
+        echo json_encode($param);
+    }
 }

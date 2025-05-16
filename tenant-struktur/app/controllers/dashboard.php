@@ -8,7 +8,7 @@ class dashboard extends Controller
     {
 
 
-        $this->model =  $this->model('model_Dashboard');
+        $this->model =  $this->model('Mmenu');
     }
 
     public function index()
