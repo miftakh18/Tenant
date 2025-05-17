@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>TENANT</title>
-    <link rel="shortcut icon" href="<?= BASEURL; ?>/assets/compiled/svg/favicon.svg" type="image/x-icon">
-    <link rel="shortcut icon" href="" type="image/png">
+
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/compiled/css/app.css">
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/compiled/css/app-dark.css">
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/extensions/@fortawesome/fontawesome-free/css/all.min.css">
@@ -136,7 +136,24 @@
                                 success: function(res) {
                                     let html = '';
                                     $.each(res, function(i, val) {
-                                        html += ` <li class="nav-item "><a class="nav-link " aria-current="page" href="${val.link}">${val.submenu}</a></li>`;
+                                        if (val.link !== '#') html += ` <li class="nav-item  "><a class="nav-link text-default" aria-current="page" href="<?= BASEURL ?>${val.link}">${val.submenu}</a></li>`;
+                                        else {
+                                            html += `   <li class="nav-item dropdown  ">
+                                                            <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                ${val.submenu}
+                                                            </span>
+                                                            <ul class="dropdown-menu border ">`;
+                                            if (val.hasOwnProperty('subsubmenu') && val.subsubmenu.length > 0) {
+                                                $.each(val.subsubmenu, (i2, v2) => {
+                                                    html += `<li ><a class="dropdown-item text-default" href="<?= BASEURL ?>${v2.link}">${v2.subsubmenu}</a></li>`;
+
+                                                })
+                                            };
+
+                                            html += `       </ul>
+                                                        </li> `;
+                                        }
+
                                     })
                                     $("#navbarNavDropdown > .navbar-nav").html(html);
                                 }

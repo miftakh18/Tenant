@@ -22,4 +22,13 @@ class Mmenu
         $this->db->bind(1, $uuid_menu);
         return $this->db->resaultSet();
     }
+    public function getSubsubmenu($uuid_menu)
+    {
+
+        $query = "SELECT uuid,uuid_submenu,subsubmenu,link,is_active FROM subsubmenu WHERE  is_active=1 AND uuid_menu=? ORDER BY id DESC ";
+
+        $this->db->query($query);
+        $this->db->bind(1, $uuid_menu);
+        return $this->db->resaultSet();
+    }
 }

@@ -20,8 +20,12 @@ class App
             $this->controller = $url[0];
             // menghilangkan $array[index]
             unset($url[0]);
-            // var_dump($url);
+        } else {
+            $this->controller = 'error_page';
+            $this->method     = 'error_404';
         }
+
+
 
         require_once '../app/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;

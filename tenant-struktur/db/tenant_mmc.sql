@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 16, 2025 at 09:28 AM
+-- Generation Time: May 17, 2025 at 07:20 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 5.6.40
 
@@ -209,7 +209,8 @@ CREATE TABLE `subsubmenu` (
 --
 
 INSERT INTO `subsubmenu` (`id`, `uuid`, `uuid_menu`, `uuid_submenu`, `subsubmenu`, `icon`, `link`, `is_active`, `create_by`, `create_at`, `modify_by`, `modify_at`) VALUES
-(1, '085ccb00-3227-11f0-89a0-080027307d45', '77d1c31d-3226-11f0-89a0-080027307d45', 'cbeb959d-3226-11f0-89a0-080027307d45', 'Sub History', NULL, '/subsubhistory', 1, 'M. Miftakhudin', '2025-05-16 14:26:07', NULL, NULL);
+(1, '085ccb00-3227-11f0-89a0-080027307d45', '77d1c31d-3226-11f0-89a0-080027307d45', 'cbeb959d-3226-11f0-89a0-080027307d45', 'Sub History', NULL, '/subsubhistory', 1, 'M. Miftakhudin', '2025-05-16 14:26:07', NULL, NULL),
+(2, 'c4be53f9-32cf-11f0-89a0-080027307d45', '8ec7cd30-3226-11f0-89a0-080027307d45', 'e36af9ab-3226-11f0-89a0-080027307d45', 'HistorySub  Test', NULL, '/subtest', 1, 'M. Miftakhudin', '2025-05-17 10:33:58', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -450,7 +451,7 @@ ALTER TABLE `submenu`
 -- AUTO_INCREMENT for table `subsubmenu`
 --
 ALTER TABLE `subsubmenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tenant`

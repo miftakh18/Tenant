@@ -19577,3 +19577,11 @@ a {
 #navbarNavDropdown.show > .nav-item {
   border-bottom: 1px solid gray;
 }
+.text-default.active{
+  color:var(--bs-default-text-color-gelap) !important;
+}
+
+
+.text-default{
+  color:#00325ca6 !important;
+}

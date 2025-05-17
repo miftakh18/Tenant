@@ -9,6 +9,18 @@ class menu extends Controller
     public function index() {}
     public function cekmenu($id_menu)
     {
-        $this->return_json($this->mmenu->getSubmenu($id_menu));
+        $submenu = $this->mmenu->getSubmenu($id_menu);
+        $subsubmenu  = $this->mmenu->getSubsubmenu($id_menu);
+        foreach ($submenu as $i => $sm) {
+            // Mencari subsubmenu yang memiliki uuid_submenu yang sama dengan uuid menu
+            $subsubmenus = array_filter($subsubmenu, function ($sub) use ($sm) {
+                return $sub['uuid_submenu'] == $sm['uuid'];
+            });
+
+            // Mengubah array filter ke dalam array numerik
+            $submenu[$i]['subsubmenu'] = array_values($subsubmenus);
+        }
+        // var_dump($submenu);
+        $this->return_json($submenu);
     }
 }
