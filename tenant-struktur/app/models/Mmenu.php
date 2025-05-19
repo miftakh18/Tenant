@@ -8,7 +8,7 @@ class Mmenu
     }
     public function getAllMenu()
     {
-        $query = "SELECT uuid,icon,menu,link,is_active FROM menu WHERE  is_active=1 ORDER BY id DESC ";
+        $query = "SELECT uuid,icon,menu,link,is_active FROM menu WHERE  is_active=1 ";
         $this->db->query($query);
         return $this->db->resaultSet();
     }

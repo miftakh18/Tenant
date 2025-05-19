@@ -2,7 +2,7 @@
 if (isset($_SESSION['login'])) {
 ?>
     <script>
-        // window.location.href = "<?= BASEURL ?>/dashboard";
+        window.location.href = "<?= BASEURL ?>/dashboard";
     </script>
 <?php
 
