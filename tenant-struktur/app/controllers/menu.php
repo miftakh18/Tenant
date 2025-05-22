@@ -9,8 +9,8 @@ class menu extends Controller
     public function index() {}
     public function cekmenu($id_menu)
     {
-        $submenu = $this->mmenu->getSubmenu($id_menu);
-        $subsubmenu  = $this->mmenu->getSubsubmenu($id_menu);
+        $submenu = $this->mmenu->getSMenuUuid_user($_SESSION['login'], $id_menu);
+        $subsubmenu  = $this->mmenu->getSSMenuUuid_user($_SESSION['login'], $id_menu);
         foreach ($submenu as $i => $sm) {
             // Mencari subsubmenu yang memiliki uuid_submenu yang sama dengan uuid menu
             $subsubmenus = array_filter($subsubmenu, function ($sub) use ($sm) {

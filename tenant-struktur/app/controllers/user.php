@@ -85,7 +85,7 @@ class user extends Controller
                 } elseif (password_verify($password, $sql["password"])) {
                     // set session
                     $_SESSION["login"] = $sql["uuid"];
-                    // $_SESSION["nama"] = $sql["nama"];
+                    $_SESSION["nama"] = $sql["nama"];
                     // $_SESSION["level"] = $sql["level"];
                     // $_SESSION['id']  = $sql['id'];
                     // $_SESSION['jabatan'] = $sql['jabatan'];

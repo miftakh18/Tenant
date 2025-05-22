@@ -24,7 +24,9 @@
          <div class="sidebar-menu ">
              <ul class="menu p-0 px-3 ">
 
-                 <?php foreach ($data['menu'] as $no => $menu):
+                 <?php
+
+                    foreach ($data['menu'] as $no => $menu):
                         $link_menu  = explode('/', $menu['link']);
                         $link_menu  = $link_menu[1];
                     ?>
