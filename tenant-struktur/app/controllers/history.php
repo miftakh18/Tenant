@@ -11,10 +11,6 @@ class history extends Controller
 
     public function index()
     {
-        $data['judul'] = 'History';
-        $data['page'] = '<i class="fas fa-tachometer-alt me-2"></i> Dashboard';
-        // $this->view('templates/header', $data);
-        // // $this->view('dashboard/index', $data);
-        // $this->view('templates/footer');
+        $this->view('tenant/history', [], 'header', 'footer');
     }
 }

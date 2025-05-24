@@ -2,7 +2,6 @@
 
 class Controller
 {
-    public $header;
 
     public function __construct() {}
     // public function header()

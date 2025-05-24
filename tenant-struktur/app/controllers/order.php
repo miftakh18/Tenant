@@ -1,9 +1,9 @@
 <?php
-class order
+class order extends Controller
 {
     public function index()
     {
 
-        echo 'tes';
+        $this->view('tenant/order', [], 'header', 'footer');
     }
 }
