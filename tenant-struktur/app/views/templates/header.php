@@ -23,7 +23,8 @@
         <?php require_once 'sidebar.php' ?>
         <div id="main" class='layout-navbar navbar-fixed '>
             <header>
-                <nav class="navbar navbar-expand text-white bg-default navbar-top shadow" style="background-color: var(--bs-default-text-color-gelap);height: 20px !important;">
+                <nav class="navbar navbar-expand text-white bg-default navbar-top shadow"
+                    style="background-color: var(--bs-default-text-color-gelap);height: 20px !important;">
                     <div class="container-fluid">
                         <a href="#" class="burger-btn d-block text-white">
                             <i class="bi bi-justify fs-3"></i>
@@ -49,7 +50,8 @@
                                         </div>
                                     </div>
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end " aria-labelledby="dropdownMenuButton" data-bs-popper="static">
+                                <ul class="dropdown-menu dropdown-menu-end " aria-labelledby="dropdownMenuButton"
+                                    data-bs-popper="static">
                                     <li>
                                         <h6 class="dropdown-header">Hello <?= $_SESSION['nama']; ?></h6>
                                     </li>
@@ -58,7 +60,8 @@
 
                                     <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="<?= BASEURL; ?>/user/logout"><i class="icon-mid bi bi-box-arrow-left me-2"></i> Logout</a></li>
+                                    <li><a class="dropdown-item" href="<?= BASEURL; ?>/user/logout"><i
+                                                class="icon-mid bi bi-box-arrow-left me-2"></i> Logout</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -70,7 +73,7 @@
             <div id="main-content">
 
                 <div class="page-heading">
-                    <?php var_dump($data); ?>
+                    <h3 class="color-default"><?= strtoupper($data['judul'])  ?></h3>
 
                 </div>
                 <section class="section">
@@ -84,16 +87,19 @@
                                 success: function(res) {
                                     let html = '';
                                     $.each(res, function(i, val) {
-                                        if (val.link !== '#') html += ` <li class="nav-item  "><a class="nav-link text-default" aria-current="page" href="<?= BASEURL ?>${val.link}">${val.submenu}</a></li>`;
+                                        if (val.link !== '#') html +=
+                                            ` <li class="nav-item  "><a class="nav-link text-default" aria-current="page" href="<?= BASEURL ?>${val.link}">${val.submenu}</a></li>`;
                                         else {
                                             html += `   <li class="nav-item dropdown  ">
                                                             <span class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                                 ${val.submenu}
                                                             </span>
                                                             <ul class="dropdown-menu border ">`;
-                                            if (val.hasOwnProperty('subsubmenu') && val.subsubmenu.length > 0) {
+                                            if (val.hasOwnProperty('subsubmenu') && val
+                                                .subsubmenu.length > 0) {
                                                 $.each(val.subsubmenu, (i2, v2) => {
-                                                    html += `<li ><a class="dropdown-item text-default" href="<?= BASEURL ?>${v2.link}">${v2.subsubmenu}</a></li>`;
+                                                    html +=
+                                                        `<li ><a class="dropdown-item text-default" href="<?= BASEURL ?>${v2.link}">${v2.subsubmenu}</a></li>`;
 
                                                 })
                                             };

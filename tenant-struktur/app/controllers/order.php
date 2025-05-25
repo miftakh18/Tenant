@@ -4,6 +4,7 @@ class order extends Controller
     public function index()
     {
 
-        $this->view('tenant/order', [], 'header', 'footer');
+        $data['judul'] = 'Pendaftaran';
+        $this->view('tenant/order', $data, 'header', 'footer');
     }
 }

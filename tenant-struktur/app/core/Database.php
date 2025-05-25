@@ -15,26 +15,29 @@ class Database
 
     public function __construct()
     {
-        // database source name 
-        $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->db_name;
+        $this->host    = $config['host']    ?? DB_HOST;
+        $this->user    = $config['user']    ?? DB_USER;
+        $this->pass    = $config['pass']    ?? DB_PASS;
+        $this->db_name = $config['name']    ?? DB_NAME;
 
-        // option
-        $option = [
-            // untuk membuat koneksi terjaga terus
-            PDO::ATTR_PERSISTENT => true,
-            // untuk mengecek error 
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-        ];
-
-
-
-        try {
-            $this->dbh = new PDO($dsn, $this->user, $this->pass, $option);
-        } catch (PDOException $e) {
-            die($e->getMessage());
-        }
+        $this->connect();
     }
 
+    private function connect()
+    {
+        $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->db_name;
+
+        $options = [
+            PDO::ATTR_PERSISTENT         => true,
+            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION
+        ];
+
+        try {
+            $this->dbh = new PDO($dsn, $this->user, $this->pass, $options);
+        } catch (PDOException $e) {
+            die('Koneksi gagal: ' . $e->getMessage());
+        }
+    }
 
 
     public function query($query)
@@ -92,5 +95,30 @@ class Database
 
         $this->execute();
         return $this->stmt->rowCount();
+    }
+
+
+    // MAGIC METHOD untuk menangani akses properti seperti $this->hisys
+    public function __get($name)
+    {
+        if (!isset($this->connections[$name])) {
+            // Tambahkan konfigurasi DB lain di sini
+            $configMap = [
+                'local' => [
+                    'host' => '192.168.0.33',
+                    'user' => 'pendaftaran',
+                    'pass' => 'pendaftaran',
+                    'name' => 'tenant_mmc'
+                ]
+            ];
+
+            if (!isset($configMap[$name])) {
+                throw new Exception("Database '$name' tidak dikonfigurasi.");
+            }
+
+            $this->connections[$name] = new self($configMap[$name]);
+        }
+
+        return $this->connections[$name];
     }
 }
