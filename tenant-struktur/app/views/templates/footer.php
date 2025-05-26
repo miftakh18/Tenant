@@ -1,10 +1,14 @@
     </section>
     </div>
-    <footer>
-        <div class="footer clearfix mb-0 text-muted">
+    <footer class="footer " style="
 
+  align-items: center !important; position: absolute !important;
+    bottom: 0 !important;">
+        <div class="container-fluid">
+            <div class="copyright float-left">
+                <p style="font-size: 12px;">SATELITE © 2025 - DEPT SIRS</p>
+            </div>
         </div>
-
     </footer>
     </div>
     </div>

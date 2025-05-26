@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 17, 2025 at 07:20 AM
+-- Generation Time: May 26, 2025 at 09:12 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 5.6.40
 
@@ -84,7 +84,7 @@ CREATE TABLE `menu` (
 
 INSERT INTO `menu` (`id`, `uuid`, `icon`, `menu`, `link`, `is_active`, `create_by`, `create_at`, `modify_by`, `modify_at`) VALUES
 (1, '4ea3cf39-3226-11f0-89a0-080027307d45', 'fas fa-chart-line', 'Dashboard', '/dashboard', 1, 'M. Miftakhudin', '2025-05-16 14:20:55', NULL, NULL),
-(2, '6bbe44f1-3226-11f0-89a0-080027307d45', 'fas fa-exchange-alt', 'Order', '/order', 1, 'M. Miftakhudin', '2025-05-16 14:21:44', NULL, NULL),
+(2, '6bbe44f1-3226-11f0-89a0-080027307d45', 'fas fa-exchange-alt', 'Pendaftaran', '/pendaftaran', 1, 'M. Miftakhudin', '2025-05-16 14:21:44', 'M. Miftakhudin', '2025-05-26 07:37:49'),
 (3, '77d1c31d-3226-11f0-89a0-080027307d45', 'fas fa-history', 'History', '/history', 1, 'M. Miftakhudin', '2025-05-16 14:22:04', NULL, NULL),
 (4, '8ec7cd30-3226-11f0-89a0-080027307d45', 'fas fa-cogs', 'Config', '/config', 1, 'M. Miftakhudin', '2025-05-16 14:22:43', NULL, NULL);
 
@@ -127,7 +127,9 @@ INSERT INTO `role_tenant` (`id`, `uuid_tenant`, `uuid_menu`, `uuid_submenu`, `uu
 (2, '4f9803f6-2685-11f0-89a0-080027307d45', '6bbe44f1-3226-11f0-89a0-080027307d45', NULL, NULL, 'M. Miftakhudin', '2025-05-16 14:27:33'),
 (3, '4f9803f6-2685-11f0-89a0-080027307d45', '77d1c31d-3226-11f0-89a0-080027307d45', 'cbeb959d-3226-11f0-89a0-080027307d45', '085ccb00-3227-11f0-89a0-080027307d45', 'M. Miftakhudin', '2025-05-16 14:27:33'),
 (4, '4f9803f6-2685-11f0-89a0-080027307d45', '8ec7cd30-3226-11f0-89a0-080027307d45', 'b60cc486-3226-11f0-89a0-080027307d45', NULL, 'M. Miftakhudin', '2025-05-16 14:27:33'),
-(5, '4f9803f6-2685-11f0-89a0-080027307d45', '8ec7cd30-3226-11f0-89a0-080027307d45', 'e36af9ab-3226-11f0-89a0-080027307d45', NULL, 'M. Miftakhudin', '2025-05-16 14:27:33');
+(5, '4f9803f6-2685-11f0-89a0-080027307d45', '8ec7cd30-3226-11f0-89a0-080027307d45', 'e36af9ab-3226-11f0-89a0-080027307d45', NULL, 'M. Miftakhudin', '2025-05-16 14:27:33'),
+(6, 'b618e171-2685-11f0-89a0-080027307d45', '4ea3cf39-3226-11f0-89a0-080027307d45', 'a3295cae-3226-11f0-89a0-080027307d45', NULL, 'M. Miftakhudin', '2025-05-20 14:50:51'),
+(8, 'b618e171-2685-11f0-89a0-080027307d45', '6bbe44f1-3226-11f0-89a0-080027307d45', NULL, NULL, 'M. Miftakhudin', '2025-05-23 18:15:44');
 
 -- --------------------------------------------------------
 
@@ -151,7 +153,10 @@ CREATE TABLE `role_user` (
 --
 
 INSERT INTO `role_user` (`id`, `id_tenant`, `id_user`, `status`, `create_by`, `create_at`, `modify_by`, `modify_at`) VALUES
-(3, '4f9803f6-2685-11f0-89a0-080027307d45', 'dcc207d0-1b58-11f0-89a0-080027307d45', 1, 'M. Miftakhudin', '2025-05-16 14:27:10', NULL, NULL);
+(3, '4f9803f6-2685-11f0-89a0-080027307d45', 'dcc207d0-1b58-11f0-89a0-080027307d45', 1, 'M. Miftakhudin', '2025-05-16 14:27:10', NULL, NULL),
+(4, '1f58c9e0-2684-11f0-89a0-080027307d45', '55f11b5f-1cd8-11f0-89a0-080027307d45', 1, 'M. Miftakhudin', '2025-05-20 14:31:42', NULL, NULL),
+(5, 'b99bcbf3-2683-11f0-89a0-080027307d45', '55f11b5f-1cd8-11f0-89a0-080027307d45', 1, 'M. Miftakhudin', '2025-05-20 14:31:42', NULL, NULL),
+(11, 'b618e171-2685-11f0-89a0-080027307d45', '5348b544-354f-11f0-89a0-080027307d45', 1, 'M. Miftakhudin', '2025-05-22 16:57:53', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -209,7 +214,7 @@ CREATE TABLE `subsubmenu` (
 --
 
 INSERT INTO `subsubmenu` (`id`, `uuid`, `uuid_menu`, `uuid_submenu`, `subsubmenu`, `icon`, `link`, `is_active`, `create_by`, `create_at`, `modify_by`, `modify_at`) VALUES
-(1, '085ccb00-3227-11f0-89a0-080027307d45', '77d1c31d-3226-11f0-89a0-080027307d45', 'cbeb959d-3226-11f0-89a0-080027307d45', 'Sub History', NULL, '/subsubhistory', 1, 'M. Miftakhudin', '2025-05-16 14:26:07', NULL, NULL),
+(1, '085ccb00-3227-11f0-89a0-080027307d45', '8ec7cd30-3226-11f0-89a0-080027307d45', 'e36af9ab-3226-11f0-89a0-080027307d45', 'Sub History', NULL, '/subsubhistory', 1, 'M. Miftakhudin', '2025-05-16 14:26:07', 'M. Miftakhudin', '2025-05-22 18:47:34'),
 (2, 'c4be53f9-32cf-11f0-89a0-080027307d45', '8ec7cd30-3226-11f0-89a0-080027307d45', 'e36af9ab-3226-11f0-89a0-080027307d45', 'HistorySub  Test', NULL, '/subtest', 1, 'M. Miftakhudin', '2025-05-17 10:33:58', NULL, NULL);
 
 -- --------------------------------------------------------
@@ -253,7 +258,7 @@ INSERT INTO `tenant` (`urutan`, `uuid`, `nama_tenant`, `nomor`, `alamat`, `is_ac
 (19, 'b99bcbf3-2683-11f0-89a0-080027307d45', 'Tesd', '0812312', 'kdkdkdkdkd', 1, NULL, 'M. Miftakhudin', '2025-05-01 18:59:24', NULL, NULL),
 (20, '1f58c9e0-2684-11f0-89a0-080027307d45', 'tes menu', '08123123', 'sdudbfsdf', 1, NULL, 'M. Miftakhudin', '2025-05-01 19:02:15', NULL, NULL),
 (21, '4f9803f6-2685-11f0-89a0-080027307d45', 'cek sub menu subsubmenu', '078123123', 'Jl.jkebasd', 1, NULL, 'M. Miftakhudin', '2025-05-01 19:10:45', NULL, NULL),
-(22, 'b618e171-2685-11f0-89a0-080027307d45', 'testing', '0812312', '012381230', 1, NULL, 'M. Miftakhudin', '2025-05-01 19:13:37', NULL, NULL),
+(22, 'b618e171-2685-11f0-89a0-080027307d45', 'Kato Ojin', '0812312', '012381230', 1, NULL, 'M. Miftakhudin', '2025-05-01 19:13:37', 'M. Miftakhudin', '2025-05-20 14:47:53'),
 (23, '4a32f128-27fa-11f0-89a0-080027307d45', 'Testing', '08234234', 'hfhfhf', 1, NULL, 'martajab anggiht kurniawan', '2025-05-03 15:40:38', NULL, NULL);
 
 -- --------------------------------------------------------
@@ -280,9 +285,10 @@ CREATE TABLE `user_tenant` (
 --
 
 INSERT INTO `user_tenant` (`uuid`, `username`, `password`, `nama`, `is_admin`, `is_active`, `create_by`, `create_at`, `modify_by`, `modify_at`) VALUES
+('5348b544-354f-11f0-89a0-080027307d45', 'kato.123', '$2y$10$eOvv3CcNZHJHJJIpkGxriOe8gpfUZxqcWn3e1mSlj8dhzWGs4L6Oa', 'KATO12', 0, 1, 'M. Miftakhudin', '2025-05-20 14:52:06', NULL, NULL),
 ('55f11b5f-1cd8-11f0-89a0-080027307d45', 'gestri', '$2y$10$q7XMuGNbDkd6ta1ByU0hTefED1mj.ZP3U.YNn5SRudWeR5Z/9oEPW', 'ges', 0, 1, 'M. Miftakhudin', '2025-04-19 11:39:53', NULL, NULL),
 ('ace9cfa0-1cd9-11f0-89a0-080027307d45', 'Teo', 'Tedi.123', 'Tedherik', 0, 1, 'M. Miftakhudin', '2025-04-19 11:49:28', 'M. Miftakhudin', '2025-04-21 17:03:11'),
-('dcc207d0-1b58-11f0-89a0-080027307d45', 'sirs.123', '$2y$10$h6TivoQ6tKb2qe797nv6DeYm2/Wwy8IsgZggTff6drRq8uUQkQcQa', 'SIRS', 1, 1, 'M. Miftakhudin', '2025-04-17 13:54:52', NULL, NULL);
+('dcc207d0-1b58-11f0-89a0-080027307d45', 'sirs.123', '$2y$10$zuKnQK52XzR5iMAdRn0B4OjveWTjPSr.55NERNFJ1K5hL7KkL0xqm', 'SIRS', 1, 1, 'M. Miftakhudin', '2025-04-17 13:54:52', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -433,13 +439,13 @@ ALTER TABLE `role_aksi`
 -- AUTO_INCREMENT for table `role_tenant`
 --
 ALTER TABLE `role_tenant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `role_user`
 --
 ALTER TABLE `role_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `submenu`

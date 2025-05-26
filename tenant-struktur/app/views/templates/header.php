@@ -8,7 +8,7 @@
     <title>TENANT</title>
 
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/compiled/css/app.css">
-    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/compiled/css/app-dark.css">
+    <!-- <link rel="stylesheet" href="<?= BASEURL; ?>/assets/compiled/css/app-dark.css"> -->
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/extensions/@fortawesome/fontawesome-free/css/all.min.css">
     <style>
 
