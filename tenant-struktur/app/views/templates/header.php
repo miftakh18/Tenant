@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/compiled/css/app.css">
     <!-- <link rel="stylesheet" href="<?= BASEURL; ?>/assets/compiled/css/app-dark.css"> -->
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/extensions/@fortawesome/fontawesome-free/css/all.min.css">
+
     <style>
 
     </style>
@@ -85,7 +86,19 @@
                                 url: `<?= BASEURL ?>/menu/cekmenu/${id_sidebar}/submenu`,
                                 dataType: 'json',
                                 success: function(res) {
-                                    let html = '';
+                                    console.log(res);
+
+                                    let html2 = res.length > 0 ? `
+<button class="navbar-toggler ms-3  " type="button" style="box-shadow: none !important;font-size:10pt" data-bs-toggle="collapse"   data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                                                    <span class="navbar-toggler-icon "></span>
+                                                </button>
+                                                <div class="collapse navbar-collapse mt-2 " id="navbarNavDropdown">
+                                                    <ul class="navbar-nav ">
+
+                                                    </ul>
+                                                </div>` : '';
+                                    $("#navs").html(html2);
+                                    let html = ``;
                                     $.each(res, function(i, val) {
                                         if (val.link !== '#') html +=
                                             ` <li class="nav-item  "><a class="nav-link text-default" aria-current="page" href="<?= BASEURL ?>${val.link}">${val.submenu}</a></li>`;

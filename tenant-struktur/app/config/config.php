@@ -4,7 +4,9 @@
 //     # code...
 // }
 session_start();
-define('BASEURL', 'http://localhost/Tenant/tenant-struktur/public');
+// $http = (isset($_SERVER['HTTP_HOST']) ? (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['SERVER_ADDR'] . "/" : 'http://localhost/');
+$http = (isset($_SERVER['HTTP_HOST']) ? (isset($_SERVER['HTTPS']) ? "https" : "http") . '://' . $_SERVER['HTTP_HOST']   : 'http://localhost');
+define('BASEURL', $http . '/Tenant/tenant-struktur/public');
 // define('BASEAPP', 'http://localhost/TA/app');
 
 

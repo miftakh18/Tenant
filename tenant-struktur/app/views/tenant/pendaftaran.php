@@ -1,27 +1,31 @@
-<div class="card shadow">
-    <div class="card-body ">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/extensions/flatpickr/flatpickr.min.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/extensions/choices.js/public/assets/styles/choices.css">
 
 
-        <div class=" d-flex justify-content-center">
-            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check" name="status_pasien" id="pasien_baru" autocomplete="off" data-pendaftaran="pasien_baru" checked>
-                <label class="btn btn-outline-default" for="pasien_baru">Pasien Baru</label>
+    <div class="card shadow">
+        <div class="card-body ">
 
-                <input type="radio" class="btn-check" name="status_pasien" id="pasien_lama" autocomplete="off" data-pendaftaran="pasien_lama">
-                <label class="btn btn-outline-default" for="pasien_lama">Pasien Lama</label>
+
+            <div class=" d-flex justify-content-center">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="status_pasien" id="pasien_baru" autocomplete="off" data-pendaftaran="pasien_baru" checked>
+                    <label class="btn btn-outline-default" for="pasien_baru">Pasien Baru</label>
+
+                    <input type="radio" class="btn-check" name="status_pasien" id="pasien_lama" autocomplete="off" data-pendaftaran="pasien_lama">
+                    <label class="btn btn-outline-default" for="pasien_lama">Pasien Lama</label>
+                </div>
             </div>
+
+            <form id="form_pendaftaran">
+
+            </form>
         </div>
-
-        <form id="form_pendaftaran">
-
-        </form>
     </div>
-</div>
+    <script src="<?= BASEURL ?>/assets/extensions/flatpickr/flatpickr.min.js"></script>
+    <script src="<?= BASEURL; ?>/assets/extensions/choices.js/public/assets/scripts/choices.js"></script>
 
-
-<script>
-    $(function() {
-        pasien_baru = `
+    <script>
+        const pasien_baru = `
         <div class="card my-4 border border-default ">
                     <div class="card-header d-flex justify-content-center">
                         <h4 class="card-title">FORMULIR PASIEN BARU</h4>
@@ -42,28 +46,42 @@
                                             <input type="text" id="kartu_identitas" class="form-control" placeholder="No. KTP / SIM / Passport" name="kartu_identitas">
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-12">
+                                    <div class="col-md-3 col-12">
                                         <div class="form-group">
                                             <label for="tempat_lahir">Tempat Lahir</label>
                                             <input type="text" id="tempat_lahir" class="form-control" placeholder="Tempat Lahir" name="tempat_lahir">
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-12">
+                                    <div class="col-md-3 col-12">
                                         <div class="form-group">
                                             <label for="tgl_lahir">Tanggal Lahir</label>
-                                            <input type="date" id="tgl_lahir" class="form-control" name="tgl_lahir" placeholder="Tanggal lahir">
+                                            <input type="text" id="tgl_lahir" class="form-control fpckr" name="tgl_lahir" placeholder="Tanggal lahir">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="company-column">Company</label>
-                                            <input type="text" id="company-column" class="form-control" name="company-column" placeholder="Company">
+                                            <label for="jk_pasien">Jenis Kelamin</label>
+                                              <div class="form-group">
+                                                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                                        <input type="radio" class="btn-check" name="jenis_kelamin" id="jk_l" autocomplete="off" value="m" checked>
+                                                        <label class="btn btn-outline-default" for="jk_l">Laki-Laki</label>
+
+                                                        <input type="radio" class="btn-check" name="jenis_kelamin" id="jk_p" autocomplete="off" value="f" >
+                                                        <label class="btn btn-outline-default" for="jk_p">Perempuan</label>
+                                                    </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="email-id-column">Email</label>
-                                            <input type="email" id="email-id-column" class="form-control" name="email-id-column" placeholder="Email">
+                                            <label for="status">Status</label>
+                                            <select class=" form-select" id="status" name="status">
+                                            <option value="bm">Belum Menikah</option>
+                                            <option value="m">Menikah</option>
+                                            <option value="j">Janda</option>
+                                            <option value="d">Duda</option>
+                                            
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group col-12">
@@ -83,19 +101,39 @@
                         </div>
                     </div>
                 </div>`;
-        $("#form_pendaftaran").html(pasien_baru);
-    })
+        $(function() {
 
-    $("input[name='status_pasien']").on("click", function() {
-        $("#form_pendaftaran").html('');
-        let pasien = $(this).data('pendaftaran');
+            $("#form_pendaftaran").html(pasien_baru);
+            flatpickr("#tgl_lahir", {
+                enableTime: false,
+                dateFormat: "d-m-Y",
+                disableMobile: true
 
-        let form = pasien_baru;
-        if (pasien == 'pasien_baru') {
-            form = pasien_baru;
-        } else {
-            form = '';
-        }
-        $("#form_pendaftaran").html(form);
-    })
-</script>
+            });
+
+            new Choices($("#status").get(0), {
+                sorter: function(a, b) {
+                    return b.label.length - a.label.length;
+                }
+            });
+
+        })
+
+        $("input[name='status_pasien']").on("click", function() {
+            $("#form_pendaftaran").html('');
+            let pasien = $(this).data('pendaftaran');
+
+            let form = pasien_baru;
+            if (pasien == 'pasien_baru') {
+                form = pasien_baru;
+            } else {
+                form = '';
+            }
+            $("#form_pendaftaran").html(form);
+            flatpickr("#tgl_lahir", {
+                enableTime: false,
+                dateFormat: "d-m-Y",
+                disableMobile: true
+            });
+        })
+    </script>

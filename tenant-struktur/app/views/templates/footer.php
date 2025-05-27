@@ -1,6 +1,6 @@
     </section>
     </div>
-    <footer class="footer " style="
+    <!-- <footer class="footer " style="
 
   align-items: center !important; position: absolute !important;
     bottom: 0 !important;">
@@ -9,7 +9,7 @@
                 <p style="font-size: 12px;">SATELITE © 2025 - DEPT SIRS</p>
             </div>
         </div>
-    </footer>
+    </footer> -->
     </div>
     </div>
 
