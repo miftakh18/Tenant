@@ -2,30 +2,55 @@
 
 class Database
 {
-    private $host       = DB_HOST;
-    private    $user    = DB_USER;
-    private    $pass    = DB_PASS;
-    private    $db_name = DB_NAME;
-
-    // database Handle 
+    private $driver;
+    private $host;
+    private $user;
+    private $pass;
+    private $db_name;
+    private $port;
     private $dbh;
-    //  statement 
     private $stmt;
 
+    private $connections = [];
 
-    public function __construct()
+
+    public function __construct($config = [])
     {
+        $this->driver  = $config['driver']  ?? 'mysql';
         $this->host    = $config['host']    ?? DB_HOST;
         $this->user    = $config['user']    ?? DB_USER;
         $this->pass    = $config['pass']    ?? DB_PASS;
         $this->db_name = $config['name']    ?? DB_NAME;
-
+        $this->port    = $config['port']     ?? null;
         $this->connect();
     }
 
     private function connect()
     {
-        $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->db_name;
+
+
+        switch ($this->driver) {
+            case 'mysql':
+                $dsn = "mysql:host={$this->host};dbname={$this->db_name};charset=utf8";
+                if ($this->port) {
+                    $dsn .= ";port={$this->port}";
+                }
+                $dsn .= ";charset=utf8";
+                break;
+            case 'pgsql':
+                $dsn = "pgsql:host={$this->host};dbname={$this->db_name}";
+                if ($this->port) {
+                    $dsn .= ";port={$this->port}";
+                }
+                break;
+            case 'sqlite':
+                $dsn = "sqlite:{$this->db_name}";
+                break;
+            default:
+                throw new Exception("Unsupported driver: {$this->driver}");
+        }
+
+        // $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->db_name;
 
         $options = [
             PDO::ATTR_PERSISTENT         => true,
@@ -36,6 +61,7 @@ class Database
             $this->dbh = new PDO($dsn, $this->user, $this->pass, $options);
         } catch (PDOException $e) {
             die('Koneksi gagal: ' . $e->getMessage());
+            // echo phpinfo();
         }
     }
 
@@ -105,10 +131,19 @@ class Database
             // Tambahkan konfigurasi DB lain di sini
             $configMap = [
                 'local' => [
+                    'driver' => 'mysql',
                     'host' => '192.168.0.33',
                     'user' => 'pendaftaran',
                     'pass' => 'pendaftaran',
                     'name' => 'tenant_mmc'
+                ],
+                'hisys' => [
+                    'driver'       => 'pgsql',
+                    'host'         => '192.168.0.6',
+                    'username'     => 'itmmc',
+                    'password'     => 'digantidulu',
+                    'dbname'       => 'rsmmc_live',
+                    'port'         => 5433
                 ]
             ];
 

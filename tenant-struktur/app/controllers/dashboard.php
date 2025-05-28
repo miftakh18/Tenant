@@ -16,6 +16,7 @@ class dashboard extends Controller
 
         $data['judul'] = 'dashboard';
         $data['page'] = '<i class="fas fa-tachometer-alt me-2"></i> Dashboard';
+        $data['hisys'] = $this->model('MHisys')->negara();
         // $this->view('templates/header', $data);
         $this->view('tenant/index', $data, 'header', 'footer');
         // $this->view('templates/footer');

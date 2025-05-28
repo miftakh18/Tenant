@@ -75,11 +75,44 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="status">Status</label>
-                                            <select class=" form-select" id="status" name="status">
-                                            <option value="bm">Belum Menikah</option>
-                                            <option value="m">Menikah</option>
-                                            <option value="j">Janda</option>
-                                            <option value="d">Duda</option>
+                                            <select class="choices form-select" id="status" name="status">
+                                            <option value="belum menikah">Belum Menikah</option>
+                                            <option value="menikah">Menikah</option>
+                                            <option value="janda">Janda</option>
+                                            <option value="duda">Duda</option>
+                                            
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="status">Agama</label>
+                                            <select class="choices form-select" id="agama" name="agama">
+                                            <option value="islam">Islam</option>
+                                            <option value="kristen">Kristen</option>
+                                            <option value="katholik">Khatolik</option>
+                                            <option value="budha">Budha</option>
+                                            <option value="hindu">Hindu</option>
+                                            <option value="kepercayaan">Kepercayaan</option>
+                                            <option value="lain-lain">Lain-Lain</option>
+                                            
+                                            </select>
+                                        </div>
+                                    </div>
+                                      <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="status">Kewarganegaraan</label>
+                                            <select class="choices form-select" id="warga" name="warga">
+                                            <option value="indonesia">Indonesia</option>
+                                            
+                                            </select>
+                                        </div>
+                                    </div>
+                                       <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="status">Pendidikan</label>
+                                            <select class="choices form-select" id="pendidikan" name="pendidikan">
+                                            <option value="s3">S3</option>
                                             
                                             </select>
                                         </div>
@@ -92,6 +125,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <div class="col-12 d-flex justify-content-end">
                                         <button type="submit" class="btn btn-default me-1 mb-1">Submit</button>
                                         <button type="reset" class="btn btn-light-secondary me-1 mb-1">Reset</button>
@@ -101,6 +135,7 @@
                         </div>
                     </div>
                 </div>`;
+
         $(function() {
 
             $("#form_pendaftaran").html(pasien_baru);
@@ -110,12 +145,18 @@
                 disableMobile: true
 
             });
+            var choice = document.querySelectorAll('.choices');
+            var co;
+            for (let i = 0; i < choice.length; i++) {
 
-            new Choices($("#status").get(0), {
-                sorter: function(a, b) {
-                    return b.label.length - a.label.length;
-                }
-            });
+                co = new Choices(choice[i], {
+                    sorter: function(a, b) {
+                        return b.label.length - a.label.length;
+                    }
+                });
+
+            }
+
 
         })
 
@@ -135,5 +176,16 @@
                 dateFormat: "d-m-Y",
                 disableMobile: true
             });
+            var choice = document.querySelectorAll('.choices');
+            var co;
+            for (let i = 0; i < choice.length; i++) {
+
+                co = new Choices(choice[i], {
+                    sorter: function(a, b) {
+                        return b.label.length - a.label.length;
+                    }
+                });
+
+            }
         })
     </script>
