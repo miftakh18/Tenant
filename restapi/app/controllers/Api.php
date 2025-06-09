@@ -24,7 +24,7 @@ class Api extends Controller
                 "aud" => "localhost",
                 "iat" => time(),
                 "exp" => time() + 3600,
-                "sub" => $user['id']
+                "sub" => $user['uuid']
             ];
 
             $jwt = JWT::encode($payload, "rahasia", 'HS256');
