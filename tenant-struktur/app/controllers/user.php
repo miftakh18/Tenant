@@ -73,9 +73,11 @@ class user extends Controller
         // var_dump($_POST);
         $username = $this->kunci->decrypt($_POST['username'], $this->nonValue);
         $password = $this->kunci->decrypt($_POST['password'], $this->nonValue);
-        $sql = $this->model('model_user')->cek_login($username);
-        // var_dump($sql);
-        // exit;
+        // $sql = $this->model('model_user')->cek_login($username);
+        $sql = $this->request_api('localhost/Tenant/restapi/public/Api/login', ['username' => $username]);
+
+        echo json_encode($sql);
+        exit;
         if ($sql == true) {
             if ($sql['is_active'] == 0) {
                 $output = ['tipe' => 'error', 'pesan' => 'Akun Anda Di NonAktifkan', 'is_active' => $sql['is_active']];

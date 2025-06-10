@@ -11,27 +11,30 @@ class Api extends Controller
     }
     public function login()
     {
-        $input = json_decode(file_get_contents("php://input"), true);
+        // $input = json_decode(file_get_contents("php://input"), true);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
+            $input    = $_POST;
+            $username = $input['username'] ?? '';
+            $password = $input['password'] ?? '';
 
-        $username = $input['username'] ?? '';
-        $password = $input['password'] ?? '';
+            $user = $this->model('Muser')->getByUsername($username);
 
-        $user = $this->model('Muser')->getByUsername($username);
 
-        if ($user && password_verify($password, $user['password'])) {
-            $payload = [
-                "iss" => "localhost",
-                "aud" => "localhost",
-                "iat" => time(),
-                "exp" => time() + 3600,
-                "sub" => $user['uuid']
-            ];
+            if ($user && password_verify($password, $user['password'])) {
+                $payload = [
+                    "iss" => "localhost",
+                    "aud" => "localhost",
+                    "iat" => time(),
+                    "exp" => time() + 3600,
+                    "sub" => $user['uuid']
+                ];
 
-            $jwt = JWT::encode($payload, "rahasia", 'HS256');
+                $jwt = JWT::encode($payload, "rahasia", 'HS256');
 
-            $this->return_json(["token" => $jwt]);
-        } else {
-            $this->return_json(["message" => "Login gagal"], 401);
+                $this->return_json(["token" => $jwt, 'login' => ""]);
+            } else {
+                $this->return_json(["message" => "Login gagal"], 401);
+            }
         }
     }
 
