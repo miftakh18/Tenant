@@ -24,7 +24,7 @@ class Controller
             } else {
                 if (!empty($header == 'header')) {
 
-                    $data['menu'] = $this->model('Mmenu')->getMenuUuid_user($_SESSION['login']);
+                    // $data['menu'] = $this->model('Mmenu')->getMenuUuid_user($_SESSION['login']);
                     require_once '../app/views/templates/header.php';
                 }
                 if (!file_exists('../app/views/' . $view . '.php')) {

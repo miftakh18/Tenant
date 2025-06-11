@@ -102,7 +102,7 @@ if (isset($_SESSION['login'])) {
     $(document).ready(function() {
         // $("#pesan").hide();
         kunci = new Encryption();
-        noValue = 'meubelindah12345';
+        noValue = 'hoohTenant123';
     });
 
     $("#frmlogin").on("submit", function(e) {

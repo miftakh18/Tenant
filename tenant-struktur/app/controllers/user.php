@@ -5,7 +5,7 @@ class user extends Controller
     private $kunci, $nonValue;
     public function __construct()
     {
-        $this->nonValue  = 'meubelindah12345';
+        $this->nonValue  = 'hoohTenant123';
         $this->kunci = new Encryption();
     }
 
@@ -74,35 +74,14 @@ class user extends Controller
         $username = $this->kunci->decrypt($_POST['username'], $this->nonValue);
         $password = $this->kunci->decrypt($_POST['password'], $this->nonValue);
         // $sql = $this->model('model_user')->cek_login($username);
-        $sql = $this->request_api('localhost/Tenant/restapi/public/Api/login', ['username' => $username]);
-
-        echo json_encode($sql);
-        exit;
+        $sql = $this->request_api('localhost/Tenant/restapi/public/Api/login', ['username' => $username, 'password' => $password]);
         if ($sql == true) {
-            if ($sql['is_active'] == 0) {
-                $output = ['tipe' => 'error', 'pesan' => 'Akun Anda Di NonAktifkan', 'is_active' => $sql['is_active']];
-            } else {
-                if (empty($username)) {
-                    $output = ['tipe' => 'error', 'pesan' => 'Username anda masih kosong'];
-                } elseif (password_verify($password, $sql["password"])) {
-                    // set session
-                    $_SESSION["login"] = $sql["uuid"];
-                    $_SESSION["nama"] = $sql["nama"];
-                    // $_SESSION["level"] = $sql["level"];
-                    // $_SESSION['id']  = $sql['id'];
-                    // $_SESSION['jabatan'] = $sql['jabatan'];
-
-                    $output = ['tipe' => 'success', 'pesan' => 'Selamat Anda telah Login'];
-                } elseif (empty($password)) {
-                    $output = ['tipe' => 'error', 'pesan' => 'Password anda masih kosong'];
-                } else {
-                    $output = ['tipe' => 'error', 'pesan' => 'Password yang Anda Masukkan Salah'];
-                }
-            }
+            $output['tipe'] = 'success';
+            $_SESSION['login'] = $sql;
+            $this->return_json($output);
         } else {
-            $output = ['tipe' => 'error', 'pesan' => 'username yang Anda Masukkan Salah'];
+            $this->return_json($sql);
         }
-        echo json_encode($output);
     }
 
     public function logout()

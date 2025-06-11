@@ -52,6 +52,7 @@ class Controller
     public function     return_json($param)
     {
         echo json_encode($param);
+        exit;
     }
 
     public function api_JWT()
