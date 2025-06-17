@@ -25,14 +25,14 @@ class Controller
                 if (!empty($header == 'header')) {
 
                     // $data['menu'] = $this->model('Mmenu')->getMenuUuid_user($_SESSION['login']);
-                    require_once '../app/views/templates/header.php';
+                    // require_once '../app/views/templates/header.php';
                 }
                 if (!file_exists('../app/views/' . $view . '.php')) {
                     require_once '../app/views/error/404.php';
                 } else {
                     require_once '../app/views/' . $view . '.php';
                 }
-                if (!empty($footer == 'footer'))  require_once '../app/views/templates/footer.php';
+                // if (!empty($footer == 'footer'))  require_once '../app/views/templates/footer.php';
             }
         }
     }

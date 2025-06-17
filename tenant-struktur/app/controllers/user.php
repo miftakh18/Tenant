@@ -75,9 +75,9 @@ class user extends Controller
         $password = $this->kunci->decrypt($_POST['password'], $this->nonValue);
         // $sql = $this->model('model_user')->cek_login($username);
         $sql = $this->request_api('localhost/Tenant/restapi/public/Api/login', ['username' => $username, 'password' => $password]);
-        if ($sql == true) {
+        if ($sql['status'] == true) {
             $output['tipe'] = 'success';
-            $_SESSION['login'] = $sql;
+            $_SESSION['login'] = $sql['data'];
             $this->return_json($output);
         } else {
             $this->return_json($sql);

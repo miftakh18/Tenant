@@ -2,12 +2,12 @@
 
 class Database
 {
-    private $driver;
-    private $host;
-    private $user;
-    private $pass;
-    private $db_name;
-    private $port;
+    private $driver = 'mysql';
+    private $host   = 'localhost';
+    private $user   =  'root';
+    private $pass   = '';
+    private $db_name = 'tenant_mmc';
+    private $port       = null;
     private $dbh;
     private $stmt;
 
@@ -16,12 +16,15 @@ class Database
 
     public function __construct($config = [])
     {
-        $this->driver  = $config['driver']  ?? 'mysql';
-        $this->host    = $config['host']    ?? DB_HOST;
-        $this->user    = $config['user']    ?? DB_USER;
-        $this->pass    = $config['pass']    ?? DB_PASS;
-        $this->db_name = $config['name']    ?? DB_NAME;
-        $this->port    = $config['port']     ?? null;
+        if (!empty($config)) {
+
+            $this->driver  = $config['driver'];
+            $this->host    = $config['host'];
+            $this->user    = $config['user'];
+            $this->pass    = $config['pass'];
+            $this->db_name = $config['name'];
+            $this->port    = $config['port'] ?? null;
+        }
         $this->connect();
     }
 
@@ -132,6 +135,13 @@ class Database
             $configMap = [
                 'local' => [
                     'driver' => 'mysql',
+                    'host' => 'localhost',
+                    'user' => 'root',
+                    'pass' => '',
+                    'name' => 'tenant_mmc'
+                ],
+                'local33' => [
+                    'driver' => 'mysql',
                     'host' => '192.168.0.33',
                     'user' => 'pendaftaran',
                     'pass' => 'pendaftaran',
@@ -142,7 +152,7 @@ class Database
                     'host'         => '192.168.0.6',
                     'username'     => 'itmmc',
                     'password'     => 'digantidulu',
-                    'dbname'       => 'rsmmc_live',
+                    'name'       => 'rsmmc_live',
                     'port'         => 5433
                 ]
             ];
