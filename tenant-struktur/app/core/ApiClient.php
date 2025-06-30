@@ -2,71 +2,35 @@
 
 class ApiClient
 {
-    private $baseUrl;
-    private $headers;
-    private $timeout;
 
-    public function __construct($config)
+
+    public function     return_json($param)
     {
-        $this->baseUrl = rtrim($config['base_url'], '/');
-        $this->headers = $config['headers'] ?? [];
-        $this->timeout = $config['timeout'] ?? 10;
+        echo json_encode($param);
     }
-
-    private function request($method, $endpoint, $data = null)
+    protected function request_api($link, $data)
     {
-        $url = $this->baseUrl . '/' . ltrim($endpoint, '/');
 
-        $ch = curl_init($url);
+        $curl = curl_init();
 
-        $headers = [];
-        foreach ($this->headers as $key => $value) {
-            $headers[] = "$key: $value";
-        }
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $link,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => $data,
+            // CURLOPT_HTTPHEADER => array(
+            //     'Content-Type: application/json',
+            // ),
+        ));
 
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_TIMEOUT, $this->timeout);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, strtoupper($method));
+        $response = curl_exec($curl);
 
-        if ($data !== null) {
-            $payload = json_encode($data);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-        }
-
-        $response = curl_exec($ch);
-        $error    = curl_error($ch);
-        $status   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-        curl_close($ch);
-
-        if ($error) {
-            throw new Exception("Curl Error: $error");
-        }
-
-        return [
-            'status' => $status,
-            'body' => json_decode($response, true)
-        ];
-    }
-
-    public function get($endpoint)
-    {
-        return $this->request('GET', $endpoint);
-    }
-
-    public function post($endpoint, $data)
-    {
-        return $this->request('POST', $endpoint, $data);
-    }
-
-    public function put($endpoint, $data)
-    {
-        return $this->request('PUT', $endpoint, $data);
-    }
-
-    public function delete($endpoint)
-    {
-        return $this->request('DELETE', $endpoint);
+        curl_close($curl);
+        return json_decode($response, true);
     }
 }

@@ -1,13 +1,12 @@
 <?php
-
 class Database
 {
     private $driver = 'mysql';
-    private $host   = 'localhost';
-    private $user   =  'root';
-    private $pass   = '';
+    private $host = 'localhost';
+    private $user = 'root';
+    private $pass = '180101';
     private $db_name = 'tenant_mmc';
-    private $port       = null;
+    private $port = 3306;
     private $dbh;
     private $stmt;
 
@@ -16,15 +15,12 @@ class Database
 
     public function __construct($config = [])
     {
-        if (!empty($config)) {
-
-            $this->driver  = $config['driver'];
-            $this->host    = $config['host'];
-            $this->user    = $config['user'];
-            $this->pass    = $config['pass'];
-            $this->db_name = $config['name'];
-            $this->port    = $config['port'] ?? null;
-        }
+        $this->driver = $config['driver'] ?? 'mysql';
+        $this->host = $config['host'] ?? $this->host;
+        $this->user = $config['user'] ?? $this->user;
+        $this->pass = $config['pass'] ?? $this->pass;
+        $this->db_name = $config['name'] ?? $this->db_name;
+        $this->port = $config['port'] ?? $this->port;
         $this->connect();
     }
 
@@ -56,8 +52,8 @@ class Database
         // $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->db_name;
 
         $options = [
-            PDO::ATTR_PERSISTENT         => true,
-            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION
+            PDO::ATTR_PERSISTENT => true,
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ];
 
         try {
@@ -74,7 +70,7 @@ class Database
 
         $this->stmt = $this->dbh->prepare($query);
     }
-    // estimasi ada kondisi where 
+    // estimasi ada kondisi where
     public function bind($param, $value, $type = null)
     {
         // menentukan type itu int/bool/null
@@ -99,7 +95,7 @@ class Database
         $this->stmt->bindValue($param, $value, $type);
     }
 
-    // eksekusi 
+    // eksekusi
     public function execute()
     {
         $this->stmt->execute();
@@ -111,7 +107,7 @@ class Database
         return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // ingin mengambil per satu data 
+    // ingin mengambil per satu data
     public function single()
     {
         $this->execute();
@@ -135,25 +131,18 @@ class Database
             $configMap = [
                 'local' => [
                     'driver' => 'mysql',
-                    'host' => 'localhost',
-                    'user' => 'root',
-                    'pass' => '',
-                    'name' => 'tenant_mmc'
-                ],
-                'local33' => [
-                    'driver' => 'mysql',
                     'host' => '192.168.0.33',
                     'user' => 'pendaftaran',
                     'pass' => 'pendaftaran',
                     'name' => 'tenant_mmc'
                 ],
                 'hisys' => [
-                    'driver'       => 'pgsql',
-                    'host'         => '192.168.0.6',
-                    'username'     => 'itmmc',
-                    'password'     => 'digantidulu',
-                    'name'       => 'rsmmc_live',
-                    'port'         => 5433
+                    'driver' => 'pgsql',
+                    'host' => '192.168.0.6',
+                    'username' => 'itmmc',
+                    'password' => 'digantidulu',
+                    'dbname' => 'rsmmc_live',
+                    'port' => 5433
                 ]
             ];
 

@@ -4,7 +4,7 @@ class Mmenu
     private $db;
     public function __construct()
     {
-        $this->db = (new Database)->local;
+        // $this->db = (new Database)->local;
     }
     public function getAllMenu()
     {

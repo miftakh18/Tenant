@@ -6,6 +6,6 @@ class model_Dashboard
 
     public function __construct()
     {
-        $this->db = new Database;
+        // $this->db = new Database;
     }
 }

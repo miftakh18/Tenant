@@ -2,11 +2,12 @@
 
 class user extends Controller
 {
-    private $kunci, $nonValue;
+    private $kunci, $nonValue, $muser;
     public function __construct()
     {
         $this->nonValue  = 'hoohTenant123';
-        $this->kunci = new Encryption();
+        $this->kunci     = new Encryption();
+        $this->muser     = $this->model('Muser');
     }
 
     public function index()
@@ -70,11 +71,12 @@ class user extends Controller
     public function proses_login()
     {
         // session_start();
-        // var_dump($_POST);
         $username = $this->kunci->decrypt($_POST['username'], $this->nonValue);
         $password = $this->kunci->decrypt($_POST['password'], $this->nonValue);
-        // $sql = $this->model('model_user')->cek_login($username);
-        $sql = $this->request_api('localhost/Tenant/restapi/public/Api/login', ['username' => $username, 'password' => $password]);
+        // var_dump($_POST);
+
+        $sql = $this->muser->cek_login($username, $password);
+
         if ($sql['status'] == true) {
             $output['tipe'] = 'success';
             $_SESSION['login'] = $sql['data'];

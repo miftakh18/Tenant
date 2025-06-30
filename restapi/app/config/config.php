@@ -20,7 +20,7 @@ define('BASEURL', $http . '/Tenant/tenant-struktur/public');
 
 
 // database
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'tenant_mmc');
+// define('DB_HOST', 'localhost');
+// define('DB_USER', 'root');
+// define('DB_PASS', '1801');
+// define('DB_NAME', 'tenant_mmc');
