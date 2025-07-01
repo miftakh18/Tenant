@@ -1,47 +1,21 @@
 <?php
 
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+use Firebase\JWT\ExpiredException;
+use Firebase\JWT\SignatureInvalidException;
 
 class Api extends Controller
 {
-    protected $request;
-    public function __construct()
-    {
-        $this->handleRequest();
-        if (empty($this->request)) {
-            $this->return_json(['message' => 'Method Request tidak berlaku']);
-        }
-        $this->api_JWT();
-    }
-    private function handleRequest()
-    {
-        $method = $_SERVER['REQUEST_METHOD'];
 
-        switch ($method) {
-            case 'GET':
-                $this->request = $_GET;
-                break;
 
-            case 'POST':
-                $this->request = $_POST;
-                break;
-
-            case 'PUT':
-            case 'DELETE':
-            case 'PATCH':
-                parse_str(file_get_contents("php://input"), $input);
-                $this->request = $input;
-                break;
-
-            default:
-                $this->request = [];
-        }
-    }
-    public function login()
+    public function Auth()
     {
 
 
-        $input    = $this->request;
+        $input    = $this->requestes();
+        // var_dump($input);
+        // exit;
         $username = $input['username'] ?? '';
         $password = $input['password'] ?? '';
         $output   = [];
@@ -59,17 +33,18 @@ class Api extends Controller
                     $output = ['tipe' => 'error', 'pesan' => 'Username anda masih kosong'];
                 } elseif (password_verify($password, $user["password"])) {
 
-                    $key     = 'HoohTenant';
+
                     $payload = [
                         "iss" => "localhost",
                         "aud" => "localhost",
                         "iat" => time(),
-                        "exp" => time() + 3600,
+                        // "exp" => time() + 3600,
+                        "exp" => 1000,
                         "sub" => $user['uuid'],
                         "result" => $user
                     ];
 
-                    $jwt = JWT::encode($payload, $key, 'HS256');
+                    $jwt = JWT::encode($payload, $this->key, 'HS256');
 
 
                     // set session
@@ -96,10 +71,34 @@ class Api extends Controller
         $this->return_json($output);
     }
 
-    public function profile()
+    public function getData()
     {
-        $user_id = JWTMiddleware::validateToken();
-        $user = $this->model('Muser')->getById($user_id);
-        $this->return_json($user);
+        // echo json_encode($_SERVER['HTTP_AUTHORIZATION']);
+        // // exit;
+        $authHeader  = $_SERVER['HTTP_AUTHORIZATION'] ?? null;
+
+        if (!$authHeader) {
+            http_response_code(401); // Unauthorized
+            echo json_encode(['message' => 'Token otentikasi tidak ditemukan.']);
+            exit;
+        }
+        $token = str_replace('Bearer ', '', $authHeader);
+
+        try {
+
+            echo json_encode('benar');
+        } catch (ExpiredException $e) {
+            // Tangani error jika token sudah kedaluwarsa
+            http_response_code(401); // Unauthorized
+            echo json_encode(['message' => 'Token telah kedaluwarsa: ' . $e->getMessage()]);
+        } catch (SignatureInvalidException $e) {
+            // Tangani error jika tanda tangan tidak valid (token palsu/diubah)
+            http_response_code(401); // Unauthorized
+            echo json_encode(['message' => 'Tanda tangan token tidak valid: ' . $e->getMessage()]);
+        } catch (Exception $e) {
+            // Tangani error umum lainnya (misal: token formatnya salah)
+            http_response_code(401); // Unauthorized
+            echo json_encode(['message' => 'Token tidak valid: ' . $e->getMessage()]);
+        }
     }
 }

@@ -2,41 +2,79 @@
 
 class Controller
 {
-
-    public function __construct() {}
-    // public function header()
-    // {
-    // }
-    public function view($view, $data = [], $header = null, $footer = null)
-
+    private $requestMethod;
+    public    $requestData;
+    private $allowedMethods = ['GET', 'POST'];
+    protected $key     = 'HoohTenant.123';
+    public function __construct()
     {
-        // if (!empty($view == 'user/login' || $view == 'user/sign_up')) {
-        // menaruh logo
-        require_once '../app/views/templates/logo.php';
-        // }
-        if ($view == 'user/login' || $view == "user/sign_up") {
-            // tanpa session
-            require_once '../app/views/' . $view . '.php';
-        } else {
-            if (!isset($_SESSION["login"])) {
-                // erorr session
-                require_once '../app/views/error/error_session.php';
-            } else {
-                if (!empty($header == 'header')) {
+        header('Content-Type: application/json');
+        $this->requestMethod  = $_SERVER['REQUEST_METHOD'];
+        $this->handleRequest();
 
-                    $data['menu'] = $this->model('Mmenu')->getMenuUuid_user($_SESSION['login']);
-                    require_once '../app/views/templates/header.php';
-                }
-                if (!file_exists('../app/views/' . $view . '.php')) {
-                    require_once '../app/views/error/404.php';
-                } else {
-                    require_once '../app/views/' . $view . '.php';
-                }
-                if (!empty($footer == 'footer'))  require_once '../app/views/templates/footer.php';
-            }
+
+        $this->api_JWT();
+    }
+
+    private function handleRequest()
+    {
+        if (!in_array($this->requestMethod, $this->allowedMethods)) {
+            // Jika tidak diizinkan, kirim respons error dan hentikan eksekusi.
+            $this->sendErrorResponse(
+                405,
+                'Metode ' . $this->requestMethod . ' tidak diizinkan untuk endpoint ini.'
+            );
+        } else {
+
+            $methodMap = [
+                'GET'    => $_GET,
+                'POST'   => $_POST,
+                'PUT'    => json_decode(file_get_contents("php://input"), true),
+                'DELETE' => json_decode(file_get_contents("php://input"), true),
+            ];
+
+            $this->requestData = $methodMap[$this->requestMethod] ?? [];
+            // echo json_encode($this->requestData);
         }
     }
 
+    public function requestes()
+    {
+        return $this->requestData;
+    }
+
+    private function getData()
+    {
+        // Logika untuk mengambil data dari database...
+        $response = ['message' => 'Ini adalah respons dari method GET'];
+        $this->sendSuccessResponse($response);
+    }
+
+    private function createData()
+    {
+        // Logika untuk menyimpan data baru ke database...
+        $response = ['message' => 'Data baru berhasil dibuat (respons dari method POST)'];
+        $this->sendSuccessResponse($response, 201); // 201 Created
+    }
+
+    private function sendSuccessResponse($data, $statusCode = 200)
+    {
+        header('Content-Type: application/json');
+        http_response_code($statusCode);
+        echo json_encode($data);
+        exit;
+    }
+
+    /**
+     * Helper untuk mengirim respons error.
+     */
+    private function sendErrorResponse($statusCode, $message)
+    {
+        header('Content-Type: application/json');
+        http_response_code($statusCode);
+        echo json_encode(['error' => $message]);
+        exit; // Hentikan eksekusi skrip
+    }
     public function model($model)
     {
         require_once '../app/models/' . $model . '.php';

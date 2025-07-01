@@ -21,7 +21,8 @@
     <script src="<?= BASEURL; ?>/assets/static/js/initTheme.js"></script>
     <script src="<?= BASEURL; ?>/js/jquery/jquery-3.6.0.min.js"></script>
     <div id="app">
-        <?php require_once 'sidebar.php' ?>
+        <?php require_once 'sidebar.php'
+        ?>
         <div id="main" class='layout-navbar navbar-fixed '>
             <header>
                 <nav class="navbar navbar-expand text-white bg-default navbar-top shadow"
@@ -89,14 +90,14 @@
                                     console.log(res);
 
                                     let html2 = res.length > 0 ? `
-<button class="navbar-toggler ms-3  " type="button" style="box-shadow: none !important;font-size:10pt" data-bs-toggle="collapse"   data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                                                    <span class="navbar-toggler-icon "></span>
-                                                </button>
-                                                <div class="collapse navbar-collapse mt-2 " id="navbarNavDropdown">
-                                                    <ul class="navbar-nav ">
+                                <button class="navbar-toggler ms-3  " type="button" style="box-shadow: none !important;font-size:10pt" data-bs-toggle="collapse"   data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                                                                                    <span class="navbar-toggler-icon "></span>
+                                                                                </button>
+                                                                                <div class="collapse navbar-collapse mt-2 " id="navbarNavDropdown">
+                                                                                    <ul class="navbar-nav ">
 
-                                                    </ul>
-                                                </div>` : '';
+                                                                                    </ul>
+                                                                                </div>` : '';
                                     $("#navs").html(html2);
                                     let html = ``;
                                     $.each(res, function(i, val) {

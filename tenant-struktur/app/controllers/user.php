@@ -76,6 +76,8 @@ class user extends Controller
         // var_dump($_POST);
 
         $sql = $this->muser->cek_login($username, $password);
+        // var_dump($sql);
+
 
         if ($sql['status'] == true) {
             $output['tipe'] = 'success';
